@@ -13,6 +13,20 @@ def unify(name)
     "Emma Haruka Iwao"
   when "YUKI TORII"
     "Yuki Torii"
+  when "Yukihiro Matsumoto"
+    "Yukihiro \"Matz\" Matsumoto"
+  when "MayumiI EMORI(emorima)"
+    "Mayumi EMORI"
+  when "Kouhei Sutou"
+    "Sutou Kouhei"
+  when "moro"
+    "Kyosuke MOROHASHI"
+  when "Kakutani Shintaro"
+    "Shintaro Kakutani"
+  when "Toshiaki KOSHIBA"
+    "Toshiaki Koshiba"
+  when "Aaron Patterson (tenderlove)"
+    "Aaron Patterson"
   else
     name
   end
@@ -80,7 +94,7 @@ htmls.each do |html|
   elsif year == :'2014'
     parsed_html.css('td').each do |item|
       names = item.css('p.speakerName').text.strip.gsub(/\[.*\]/, '').split(",").map { |name| name.lstrip }
-      names.each.with_index do |name, i|
+      names.each do |name|
         name = unify(name)
         speakers[name][year] = {
           id: nil,
@@ -93,6 +107,7 @@ htmls.each do |html|
     parsed_html.css('li').each.with_index do |item, i|
       names = item.text.split("\n").last.split(",").map { |name| name.lstrip }
       # NOTE: Speakerと関係ないものを除外
+      # TODO: 正規表現にしたい
       names = names.delete_if do |name|
         if name == 'HOME' || name == 'SCHEDULE' || name == 'SPEAKERS' || name == 'FOR ATTENDEES' || name == 'GOODIES' || name == 'SPONSORS'
           true
@@ -101,12 +116,55 @@ htmls.each do |html|
         end
       end
 
-      names.each.with_index do |name, i|
+      names.each do |name|
         name = unify(name)
         speakers[name][year] = {
           id: nil,
-          title: item.css('a').text.strip,
+          # TODO: 正規表現をまとめたい
+          title: item.css('a').text.gsub(/\n/, '').gsub(/^'/, '').gsub(/'$/, '').strip,
           url: item.css('a').attribute('href')&.value
+        }
+      end
+    end
+  elsif year == :'2011'
+    parsed_html.css('td.session').each do |item|
+      names = item.css('ul.presenter').text.strip.split("\n").map { |name| name.lstrip if name != '' }.compact
+      talks = item.css('a.tip').map do |elm|
+        elm.children.first&.text&.strip
+      end
+      urls = item.css('a.tip').map do |elm|
+        elm.attribute('href').value
+      end
+      names.each.with_index do |name, i|
+        name = unify(name)
+        case name
+        when "Koichiro Ohba"
+          i = 0
+        when "Kouji Takao"
+          i = 1
+        when "okkez"
+          i = 0
+        when "Sunao Tanabe"
+          i = 0
+        when "Toshiaki Koshiba"
+          i = 0
+        when "Shintaro Kakutani"
+          i = 0
+        when "Hal Seki"
+          i = 1
+        end
+
+        # NOTE: Matzと角谷さんと島田さんは2回登壇している。島田さんはたまたまうまくいくので、Matzと角谷さんのみ対応
+        i = 1 if name == "Yukihiro \"Matz\" Matsumoto" && talks[1] == "Lightweight Ruby"
+        i = 0 if name == "Kakutani Shintaro" && talks[0] == "All About RubyKaigi Ecosystem"
+        # NOTE: HTMLの構造上取りにくいので直接書き換え
+        talks[i] = "Ruby Ruined My Life." if name == "Aaron Patterson"
+
+        speakers[name][year] ||= []
+        speakers[name][year] << {
+          id: nil,
+          title: talks[i],
+          url: urls[i]
         }
       end
     end

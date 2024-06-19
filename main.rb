@@ -33,6 +33,12 @@ def unify(name)
     "Tanaka Akira"
   when "SHIGERU NAKAJIMA"
     "Shigeru Nakajima"
+  when "Yugui - Yuki Sonoda"
+    "Yugui"
+  when "tenderlove"
+    "Aaron Patterson"
+  when "Shyouhei Urabe", "Urabe Shyouhei"
+    "Urabe, Shyouhei"
   else
     name
   end
@@ -40,6 +46,9 @@ end
 
 speakers = Hash.new { |h, k| h[k] = {} }
 htmls = Dir.glob('html/*.html')
+
+# TODO: 2016年以降はrubykaigi-staticにymlがあるのでそちらを使う
+# https://github.com/ruby-no-kai/rubykaigi-static/blob/master/2016/data/speakers.yml
 
 htmls.each do |html|
   parsed_html = Nokogiri::HTML.parse(File.open(html))
@@ -121,6 +130,7 @@ htmls.each do |html|
           false
         end
       end
+      # NOTE: 多分2名扱いにならないように統一
       names = ["nagachika"] if names == ["Tomoyuki", "Chikanaga"]
 
       names.each do |name|
@@ -167,11 +177,62 @@ htmls.each do |html|
         # NOTE: HTMLの構造上取りにくいので直接書き換え
         talks[i] = "Ruby Ruined My Life." if name == "Aaron Patterson"
 
+        # NOTE: 2011年は複数回登壇している人がいるので、配列にする
+        # 全部配列にしたほうがいいかも
         speakers[name][year] ||= []
         speakers[name][year] << {
           id: nil,
           title: talks[i],
           url: urls[i]
+        }
+      end
+    end
+  elsif year == :'2010'
+    # NOTE: Main Convention HallとConvention Hall 200を本トラックだと解釈する
+    parsed_html.css('td.room_hall').each do |item|
+      names = item.css('p.speaker').text.strip
+      talk = item.css('a.tip').text.strip.split("\n").first
+      url = item.css('a.tip').attribute('href').value
+
+      names = names.split(",").first
+      names = case names
+      when 'Akira Matsuda, Masayoshi Takahashi and others'
+        ['Akira Matsuda', 'Masayoshi Takahashi']
+      when 'Munjal Budhabhatti And Sudhindra Rao'
+        ['Munjal Budhabhatti', 'Sudhindra Rao']
+      when 'Kei Hamanaka, Yuichi Saotome'
+        ['Kei Hamanaka', 'Yuichi Saotome']
+      else
+        [names]
+      end
+
+      next if names.first&.empty?
+      names.each do |name|
+        name = unify(name)
+        speakers[name][year] = {
+          id: nil,
+          title: talk,
+          url: url
+        }
+      end
+    end
+  elsif year == :'2009'
+    parsed_html.css('div.session').each do |item|
+      names = item.css('p.speaker').text
+      talk = item.css('p.title').children.text
+      url = item.css('p.title').children.attribute('href')&.value
+
+      names = names.split(",")
+      names = names&.first&.split("、")
+      names = names&.first&.split(" and ")
+
+      next if names&.first&.empty? || !names || names == "(Bring your own food/drink)" || names == "(this room will start at 10:00)"
+      names.each do |name|
+        name = unify(name)
+        speakers[name][year] = {
+          id: nil,
+          title: talk,
+          url: url
         }
       end
     end

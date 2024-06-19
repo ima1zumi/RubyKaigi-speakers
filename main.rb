@@ -43,7 +43,7 @@ htmls.each do |html|
   parsed_html = Nokogiri::HTML.parse(File.open(html))
   year = html.split('/')[-1].split('.')[0].to_sym
 
-  if year == :'2023' || year == :'2022'
+  if year == :'2024' || year == :'2023' || year == :'2022'
     parsed_html.css('div.m-schedule-item').each do |item|
       names = item.css('span.m-schedule-item-speaker__name').map { |elm| elm.text }
       names.each.with_index do |name, i|

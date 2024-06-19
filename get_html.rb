@@ -1,6 +1,7 @@
 require 'open-uri'
 
 uris = [
+  'https://rubykaigi.org/2024/schedule/',
   'https://rubykaigi.org/2023/schedule/',
   'https://rubykaigi.org/2022/schedule/',
   'https://rubykaigi.org/2021-takeout/schedule/',

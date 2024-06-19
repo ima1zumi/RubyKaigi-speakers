@@ -5,8 +5,8 @@ def unify(name)
   case name
   when "SHIBATA Hiroshi"
     "Hiroshi SHIBATA"
-  when "TAGOMORI \"moris\" Satoshi"
-    "Satoshi \"moris\" Tagomori"
+  when "TAGOMORI \"moris\" Satoshi", "tagomoris", "Satoshi \"moris\" Tagomori"
+    "Satoshi Tagomori"
   when "Thomas E. Enebo"
     "Thomas E Enebo"
   when "Haruka Iwao"
@@ -31,6 +31,8 @@ def unify(name)
     "nagachika"
   when "Akira “akr” Tanaka"
     "Tanaka Akira"
+  when "SHIGERU NAKAJIMA"
+    "Shigeru Nakajima"
   else
     name
   end

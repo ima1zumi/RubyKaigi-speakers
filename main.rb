@@ -27,6 +27,10 @@ def unify(name)
     "Toshiaki Koshiba"
   when "Aaron Patterson (tenderlove)"
     "Aaron Patterson"
+  when "Tomoyuki Chikanaga"
+    "nagachika"
+  when "Akira “akr” Tanaka"
+    "Tanaka Akira"
   else
     name
   end
@@ -115,6 +119,7 @@ htmls.each do |html|
           false
         end
       end
+      names = ["nagachika"] if names == ["Tomoyuki", "Chikanaga"]
 
       names.each do |name|
         name = unify(name)

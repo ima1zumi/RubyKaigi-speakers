@@ -23,7 +23,7 @@ uris = [
 
 uris.each do |uri|
   URI.open(uri) do |response|
-    year = uri.split('/')[3]
+    year = uri.match(/(\d{4}-takeout|\d{4})/).to_s
     if uri.include?('.yml')
       IO.copy_stream(response, "schedule/#{year}.yml")
     else

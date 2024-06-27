@@ -1,15 +1,11 @@
 require 'open-uri'
 
-uris = [
+htmls = [
   'https://rubykaigi.org/2024/schedule/',
-  'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2023/data/speakers.yml',
-  'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2022/data/speakers.yml',
-  'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2021-takeout/data/speakers.yml',
   'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2020-takeout/schedule/index.html',
   'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2019/schedule/index.html',
   'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2018/schedule/index.html',
   'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2017/schedule/index.html',
-  'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2016/data/speakers.yml',
   'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2015/schedule/index.html',
   'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2014/schedule/index.html',
   'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2013/schedule/index.html',
@@ -21,13 +17,23 @@ uris = [
   'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2006/program.html'
 ]
 
-uris.each do |uri|
+ymls = [
+  'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2023/data/speakers.yml',
+  'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2022/data/speakers.yml',
+  'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2021-takeout/data/speakers.yml',
+  'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2016/data/speakers.yml',
+]
+
+htmls.each do |uri|
   URI.open(uri) do |response|
     year = uri.match(/(\d{4}-takeout|\d{4})/).to_s
-    if uri.include?('.yml')
-      IO.copy_stream(response, "schedule/#{year}.yml")
-    else
-      IO.copy_stream(response, "schedule/#{year}.html")
-    end
+    IO.copy_stream(response, "schedule/html/#{year}.html")
+  end
+end
+
+ymls.each do |uri|
+  URI.open(uri) do |response|
+    year = uri.match(/(\d{4}-takeout|\d{4})/).to_s
+    IO.copy_stream(response, "schedule/yml/#{year}.yml")
   end
 end

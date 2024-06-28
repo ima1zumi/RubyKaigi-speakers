@@ -45,10 +45,7 @@ def unify(name)
 end
 
 speakers = Hash.new { |h, k| h[k] = {} }
-htmls = Dir.glob('html/*.html')
-
-# TODO: 2016年以降はrubykaigi-staticにymlがあるのでそちらを使う
-# https://github.com/ruby-no-kai/rubykaigi-static/blob/master/2016/data/speakers.yml
+htmls = Dir.glob('schedule/*.html')
 
 htmls.each do |html|
   parsed_html = Nokogiri::HTML.parse(File.open(html))
@@ -236,6 +233,7 @@ htmls.each do |html|
         }
       end
     end
+  elsif year == :'2008'
   end
 end
 

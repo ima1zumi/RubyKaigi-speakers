@@ -1,7 +1,7 @@
 require 'open-uri'
 
 years = {
-  '2024' => ['https://rubykaigi.org/2024/schedule/'],
+  '2024' => ['https://rubykaigi.org/2024/schedule/index.html'],
   '2023' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2023/schedule/index.html'],
   '2022' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2022/schedule/index.html'],
   '2021-takeout' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2021-takeout/schedule/index.html'],
@@ -22,10 +22,12 @@ years = {
 }
 
 years.each do |year, uris|
-  Dir.mkdir('schedule/#{year}') unless Dir.exist?('schedule/#{year}')
+  Dir.mkdir("schedule/#{year}") unless Dir.exist?("schedule/#{year}")
   uris.each do |uri|
     URI.open(uri) do |response|
-      IO.copy_stream(response, uri)
+      filename = uri.match(/(\d{4}-takeout|\d{4})\/(.*html)/)[2]
+      filename.gsub!('/', '_')
+      IO.copy_stream(response, "schedule/#{year}/#{filename}")
     end
   end
 end

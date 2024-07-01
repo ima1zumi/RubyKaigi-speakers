@@ -44,8 +44,51 @@ def unify(name)
   end
 end
 
+def get_speakers_since_2022(year, files)
+  talks = Hash.new { |h, k| h[k] = {} }
+  parsed_html = Nokogiri::HTML.parse(File.open(files.first))
+
+  parsed_html.css('div.m-schedule-item').each do |item|
+    names = item.css('span.m-schedule-item-speaker__name').map { |elm| elm.text }
+    names.each.with_index do |name, i|
+      name = unify(name)
+      ids = item.css('span.m-schedule-item-speaker__id').map { |elm| elm.text }
+      talks[name][year] = {
+        id: ids[i],
+        title: item.css('div.m-schedule-item__title').text.strip,
+        url: item.css("a.m-schedule-item__inner").attribute("href").value
+      }
+    end
+  end
+
+  talks
+end
+
+def get_speakers_2021_takeout
+end
+
 speakers = Hash.new { |h, k| h[k] = {} }
-htmls = Dir.glob('schedule/*.html')
+years = Dir.glob('schedule/*/').map { _1.split('/')[1] }
+
+years.each do |year|
+  files = Dir.glob("schedule/#{year}/*")
+  if year == '2024' || year == '2023' || year == '2022'
+    speakers.merge!(get_speakers_since_2022(year, files))
+  elsif year == '2021-takeout'
+  elsif year == '2020-takeout' || year == '2019' || year == '2018' || year == '2017'
+  elsif year == '2016' || year == '2015'
+  elsif year == '2014'
+  elsif year == '2013'
+  elsif year == '2011'
+  elsif year == '2010'
+  elsif year == '2009'
+  elsif year == '2008'
+  end
+end
+
+pp speakers
+
+__END__
 
 htmls.each do |html|
   parsed_html = Nokogiri::HTML.parse(File.open(html))

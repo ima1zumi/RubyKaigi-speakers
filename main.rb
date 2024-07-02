@@ -53,7 +53,9 @@ def get_speakers_since_2022(year, files)
     names.each.with_index do |name, i|
       name = unify(name)
       ids = item.css('span.m-schedule-item-speaker__id').map { |elm| elm.text }
-      talks[name][year] = {
+
+      talks[name][year] ||= []
+      talks[name][year] << {
         id: ids[i],
         title: item.css('div.m-schedule-item__title').text.strip,
         url: item.css("a.m-schedule-item__inner").attribute("href").value
@@ -64,7 +66,26 @@ def get_speakers_since_2022(year, files)
   talks
 end
 
-def get_speakers_2021_takeout
+def get_speakers_2021_takeout(year, files)
+  talks = Hash.new { |h, k| h[k] = {} }
+  parsed_html = Nokogiri::HTML.parse(File.open(files.first))
+
+  parsed_html.css('div.p-timetable__track').each do |item|
+    names = item.css('span.p-timetable__speaker-name').map { |elm| elm.text.strip }
+    names.each.with_index do |name, i|
+      name = unify(name)
+      ids = item.css('span.p-timetable__speaker-sns').map { |elm| elm.text.strip }
+
+      talks[name][year] ||= []
+      talks[name][year] << {
+        id: ids[i],
+        title: item.css('div.p-timetable__talk-title').text.strip,
+        url: item.css('a').first&.attribute('href')&.value
+      }
+    end
+  end
+
+  talks
 end
 
 speakers = Hash.new { |h, k| h[k] = {} }
@@ -72,9 +93,12 @@ years = Dir.glob('schedule/*/').map { _1.split('/')[1] }
 
 years.each do |year|
   files = Dir.glob("schedule/#{year}/*")
+  talks = {}
+
   if year == '2024' || year == '2023' || year == '2022'
-    speakers.merge!(get_speakers_since_2022(year, files))
+    talks = get_speakers_since_2022(year, files)
   elsif year == '2021-takeout'
+    talks = get_speakers_2021_takeout(year, files)
   elsif year == '2020-takeout' || year == '2019' || year == '2018' || year == '2017'
   elsif year == '2016' || year == '2015'
   elsif year == '2014'
@@ -84,6 +108,8 @@ years.each do |year|
   elsif year == '2009'
   elsif year == '2008'
   end
+
+  speakers = speakers.merge(talks) { |_, old, new| old.merge(new) }
 end
 
 pp speakers

@@ -301,25 +301,28 @@ years.each do |year|
   files = Dir.glob("schedule/#{year}/*")
   talks = {}
 
-  if year == '2024' || year == '2023' || year == '2022'
+  case year
+  when '2024', '2023', '2022'
     talks = get_speakers_since_2022(year, files)
-  elsif year == '2021-takeout'
+  when '2021-takeout'
     talks = get_speakers_2021_takeout(year, files)
-  elsif year == '2020-takeout' || year == '2019' || year == '2018' || year == '2017'
+  when '2020-takeout', '2019', '2018', '2017'
     talks = get_speakers_2017_to_2020(year, files)
-  elsif year == '2016' || year == '2015'
+  when '2016', '2015'
     talks = get_speakers_2015_to_2016(year, files)
-  elsif year == '2014'
+  when '2014'
     talks = get_speakers_in_2014(year, files)
-  elsif year == '2013'
+  when '2013'
     talks = get_speakers_in_2013(year, files)
-  elsif year == '2011'
+  when '2011'
     talks = get_speakers_in_2011(year, files)
-  elsif year == '2010'
+  when '2010'
     talks = get_speakers_in_2010(year, files)
-  elsif year == '2009'
+  when '2009'
     talks = get_speakers_in_2009(year, files)
-  elsif year == '2008'
+  when '2008'
+  when '2007'
+  when '2006'
   end
 
   speakers = speakers.merge(talks) { |_, old, new| old.merge(new) }

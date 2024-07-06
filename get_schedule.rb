@@ -31,3 +31,11 @@ years.each do |year, uris|
     end
   end
 end
+
+# NOTE: 2008年のcharsetはEUC-JPだがファイルのEncodingはUTF-8なので修正
+files = Dir.glob('schedule/2008/*html')
+files.each do |file|
+  content = File.read(file)
+  content.gsub!(/euc-jp/i, 'utf-8')
+  File.write(file, content)
+end

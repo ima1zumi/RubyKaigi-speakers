@@ -13,7 +13,7 @@ def unify(name)
     "Emma Haruka Iwao"
   when "YUKI TORII"
     "Yuki Torii"
-  when "Yukihiro Matsumoto"
+  when "Yukihiro Matsumoto", "Yukihiro \"matz\" MATSUMOTO"
     "Yukihiro \"Matz\" Matsumoto"
   when "MayumiI EMORI(emorima)"
     "Mayumi EMORI"
@@ -33,12 +33,18 @@ def unify(name)
     "Tanaka Akira"
   when "SHIGERU NAKAJIMA"
     "Shigeru Nakajima"
-  when "Yugui - Yuki Sonoda"
+  when "Yugui - Yuki Sonoda", "Yugui (Yuki SONODA)"
     "Yugui"
   when "tenderlove"
     "Aaron Patterson"
   when "Shyouhei Urabe", "Urabe Shyouhei"
     "Urabe, Shyouhei"
+  when "Koichi SASADA"
+    "Koichi Sasada"
+  when "Yui NARUSE"
+    "NARUSE, Yui"
+  when "Akira TANAKA"
+    "Tanaka Akira"
   else
     name
   end
@@ -294,38 +300,69 @@ def get_speakers_in_2009(year, files)
   talks
 end
 
+def get_speakers_in_2008(year, files)
+  not_talks = ['Opening', 'Doors open', 'Ruby スポンサー', 'Platinum スポンサー', 'Gold スポンサー', 'メディアスポンサー', '協力']
+  talks = Hash.new { |h, k| h[k] = {} }
+
+  files.map do |file|
+    parsed_html = Nokogiri::HTML.parse(File.open(file))
+    parsed_html.css('h4').each do |item|
+      heading = item.text.strip
+      next if not_talks.include?(heading)
+
+      title = heading.rpartition('-')[0].rstrip
+      names = heading.rpartition('-')[2].gsub(/\[English\]/, '').gsub(/,.*/, '').strip.split("/")
+
+      names.each do |name|
+        name = unify(name)
+        id = nil
+        url = file == 'schedule/2008/MainSession_en.html' ? 'https://rubykaigi.org/2008/MainSession.html' : 'https://rubykaigi.org/2008/SubSession.html'
+
+        add_speakers(talks, year, name, id, title, url)
+      end
+    end
+  end
+
+  talks
+end
+
+def get_speakers(speakers, years)
+  years.each do |year|
+    files = Dir.glob("schedule/#{year}/*")
+    talks = {}
+
+    case year
+    when '2024', '2023', '2022'
+      talks = get_speakers_since_2022(year, files)
+    when '2021-takeout'
+      talks = get_speakers_2021_takeout(year, files)
+    when '2020-takeout', '2019', '2018', '2017'
+      talks = get_speakers_2017_to_2020(year, files)
+    when '2016', '2015'
+      talks = get_speakers_2015_to_2016(year, files)
+    when '2014'
+      talks = get_speakers_in_2014(year, files)
+    when '2013'
+      talks = get_speakers_in_2013(year, files)
+    when '2011'
+      talks = get_speakers_in_2011(year, files)
+    when '2010'
+      talks = get_speakers_in_2010(year, files)
+    when '2009'
+      talks = get_speakers_in_2009(year, files)
+    when '2008'
+      talks = get_speakers_in_2008(year, files)
+    when '2007'
+    when '2006'
+    end
+
+    speakers = speakers.merge(talks) { |_, old, new| old.merge(new) }
+  end
+
+  speakers
+end
+
 speakers = Hash.new { |h, k| h[k] = {} }
 years = Dir.glob('schedule/*/').map { _1.split('/')[1] }
 
-years.each do |year|
-  files = Dir.glob("schedule/#{year}/*")
-  talks = {}
-
-  case year
-  when '2024', '2023', '2022'
-    talks = get_speakers_since_2022(year, files)
-  when '2021-takeout'
-    talks = get_speakers_2021_takeout(year, files)
-  when '2020-takeout', '2019', '2018', '2017'
-    talks = get_speakers_2017_to_2020(year, files)
-  when '2016', '2015'
-    talks = get_speakers_2015_to_2016(year, files)
-  when '2014'
-    talks = get_speakers_in_2014(year, files)
-  when '2013'
-    talks = get_speakers_in_2013(year, files)
-  when '2011'
-    talks = get_speakers_in_2011(year, files)
-  when '2010'
-    talks = get_speakers_in_2010(year, files)
-  when '2009'
-    talks = get_speakers_in_2009(year, files)
-  when '2008'
-  when '2007'
-  when '2006'
-  end
-
-  speakers = speakers.merge(talks) { |_, old, new| old.merge(new) }
-end
-
-pp speakers
+pp get_speakers(speakers, years)

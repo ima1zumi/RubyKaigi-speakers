@@ -18,7 +18,7 @@ years = {
   '2009' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2009/en/talks/index.html'],
   '2008' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2008/MainSession_en.html', 'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2008/SubSession_en.html'],
   '2007' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2007/Program-EN0609.html', 'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2007/Program-EN0610.html'],
-  '2006' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2006/program.html']
+  '2006' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2006/program0610.html', 'https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2006/program0611.html']
 }
 
 years.each do |year, uris|
@@ -30,12 +30,4 @@ years.each do |year, uris|
       IO.copy_stream(response, "schedule/#{year}/#{filename}")
     end
   end
-end
-
-# NOTE: 2008年のcharsetはEUC-JPだがファイルのEncodingはUTF-8なので修正
-files = Dir.glob('schedule/2008/*html')
-files.each do |file|
-  content = File.read(file)
-  content.gsub!(/euc-jp/i, 'utf-8')
-  File.write(file, content)
 end

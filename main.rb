@@ -13,7 +13,7 @@ def unify(name)
     "Emma Haruka Iwao"
   when "YUKI TORII"
     "Yuki Torii"
-  when "Yukihiro Matsumoto", "Yukihiro \"matz\" MATSUMOTO"
+  when "Yukihiro Matsumoto", "Yukihiro \"matz\" MATSUMOTO", "まつもとゆきひろ", "Matz"
     "Yukihiro \"Matz\" Matsumoto"
   when "MayumiI EMORI(emorima)"
     "Mayumi EMORI"
@@ -53,6 +53,18 @@ def unify(name)
     "arton"
   when "Yutaka Hara"
     "Yutaka HARA"
+  when "関将俊"
+    "Masatoshi SEKI"
+  when "高橋征義"
+    "Masayoshi Takahashi"
+  when "田中 哲"
+    "Tanaka Akira"
+  when "石塚圭樹"
+    "Keiju Ishitsuka"
+  when "Kentaro GOTO", "後藤謙太郎", "Kentaro Goto", "gotoken"
+    "Kentaro Goto / ごとけん"
+  when "前田修吾", "Shugo MAEDA"
+    "Shugo Maeda"
   else
     name
   end
@@ -87,7 +99,7 @@ def get_speakers_since_2022(year, files)
   talks
 end
 
-def get_speakers_2021_takeout(year, files)
+def get_speakers_in_2021_takeout(year, files)
   talks = Hash.new { |h, k| h[k] = {} }
   parsed_html = Nokogiri::HTML.parse(File.open(files.first))
 
@@ -313,7 +325,8 @@ def get_speakers_in_2008(year, files)
   talks = Hash.new { |h, k| h[k] = {} }
 
   files.map do |file|
-    parsed_html = Nokogiri::HTML.parse(File.open(file))
+    # NOTE: 2008年はcharsetがEUC-JPでFile.openするとパースできない。File.readだとパースできる
+    parsed_html = Nokogiri::HTML.parse(File.read(file))
     parsed_html.css('h4').each do |item|
       heading = item.text.strip
       next if not_talks.include?(heading)
@@ -375,6 +388,31 @@ def get_speakers_in_2007(year, files)
   talks
 end
 
+def get_speakers_in_2006(year, files)
+  not_talks = ['パネリスト', 'コメンテータ', '司会']
+  lightning_talks = ['BioRuby', 'RubyCocoaで作るMacアプリケーション', 'RubyによるHL7プロトコルライブラリ', 'Ruby On Rails の Relative Path プラグイン', 'Rails製CMS「Rubricks」', 'わりと簡単rubyアプリをDebianへ', 'Ruby on 風博士', 'なぜブロックは素晴らしいか -- RubyがLispでない理由', 'Ruby Reference Seeker for Emacsen', '人工無能 ロイディ', 'インターネット物理モデル: または私はいかにして悩むのをやめ転がる玉を愛するようになったか']
+
+  talks = Hash.new { |h, k| h[k] = {} }
+  files.each do |file|
+    parsed_html = Nokogiri::HTML.parse(File.open(file))
+    parsed_html.css('h4').each do |item|
+      heading = item.text.strip
+      next if not_talks.include?(heading)
+      title = heading.match(/「(.*)」/)[1]
+      name = heading.split('「')[0].strip.tr('基調講演: ', '')
+      next if lightning_talks.include?(title)
+
+      name = unify(name)
+      id = nil
+      url = file
+
+      add_speakers(talks, year, name, id, title, url)
+    end
+  end
+
+  talks
+end
+
 def get_speakers(speakers, years)
   years.each do |year|
     files = Dir.glob("schedule/#{year}/*")
@@ -384,7 +422,7 @@ def get_speakers(speakers, years)
     when '2024', '2023', '2022'
       talks = get_speakers_since_2022(year, files)
     when '2021-takeout'
-      talks = get_speakers_2021_takeout(year, files)
+      talks = get_speakers_in_2021_takeout(year, files)
     when '2020-takeout', '2019', '2018', '2017'
       talks = get_speakers_2017_to_2020(year, files)
     when '2016', '2015'
@@ -404,6 +442,7 @@ def get_speakers(speakers, years)
     when '2007'
       talks = get_speakers_in_2007(year, files)
     when '2006'
+      talks = get_speakers_in_2006(year, files)
     end
 
     speakers = speakers.merge(talks) { |_, old, new| old.merge(new) }
@@ -415,4 +454,5 @@ end
 speakers = Hash.new { |h, k| h[k] = {} }
 years = Dir.glob('schedule/*/').map { _1.split('/')[1] }
 
+# TODO: keyが""のデータはバグってるのが混じってそう
 pp get_speakers(speakers, years)

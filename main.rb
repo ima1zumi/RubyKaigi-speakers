@@ -57,7 +57,7 @@ def unify(name)
     "Masatoshi SEKI"
   when "高橋征義"
     "Masayoshi Takahashi"
-  when "田中 哲"
+  when "田中 哲", "田中哲"
     "Tanaka Akira"
   when "石塚圭樹"
     "Keiju Ishitsuka"
@@ -86,6 +86,7 @@ def get_speakers_since_2022(year, files)
   parsed_html.css('div.m-schedule-item').each do |item|
     names = item.css('span.m-schedule-item-speaker__name').map { |elm| elm.text }
     names.each.with_index do |name, i|
+      next if name.empty?
       name = unify(name)
       ids = item.css('span.m-schedule-item-speaker__id').map { |elm| elm.text }
       id = ids[i]
@@ -126,6 +127,7 @@ def get_speakers_2017_to_2020(year, files)
   parsed_html.css('a.schedule-item').each do |item|
     names = item.css('span.schedule-item-speaker__name').map { |elm| elm.text.strip }
     names.each.with_index do |name, i|
+      next if name.empty?
       name = unify(name)
       ids = item.css('span.schedule-item-speaker__id').map { |elm| elm.text.strip }
       id = ids[i]
@@ -146,6 +148,7 @@ def get_speakers_2015_to_2016(year, files)
   parsed_html.css('td.schedule-table__td').each do |item|
     names = item.css('span.schedule-table__name').map { |elm| elm.text.strip }
     names.each.with_index do |name, i|
+      next if name.empty?
       name = unify(name)
       ids = item.css('span.schedule-table__id').map { |elm| elm.text.strip }
       id = ids[i]
@@ -197,6 +200,7 @@ def get_speakers_in_2013(year, files)
     names = ["nagachika"] if names == ["Tomoyuki", "Chikanaga"]
 
     names.each do |name|
+      next if name.empty?
       name = unify(name)
       id = nil
       title = item.css('a').text.gsub(/\n/, '').gsub(/^'/, '').gsub(/'$/, '').strip
@@ -418,31 +422,31 @@ def get_speakers(speakers, years)
     files = Dir.glob("schedule/#{year}/*")
     talks = {}
 
-    case year
+    talks = case year
     when '2024', '2023', '2022'
-      talks = get_speakers_since_2022(year, files)
+      get_speakers_since_2022(year, files)
     when '2021-takeout'
-      talks = get_speakers_in_2021_takeout(year, files)
+      get_speakers_in_2021_takeout(year, files)
     when '2020-takeout', '2019', '2018', '2017'
-      talks = get_speakers_2017_to_2020(year, files)
+      get_speakers_2017_to_2020(year, files)
     when '2016', '2015'
-      talks = get_speakers_2015_to_2016(year, files)
+      get_speakers_2015_to_2016(year, files)
     when '2014'
-      talks = get_speakers_in_2014(year, files)
+      get_speakers_in_2014(year, files)
     when '2013'
-      talks = get_speakers_in_2013(year, files)
+      get_speakers_in_2013(year, files)
     when '2011'
-      talks = get_speakers_in_2011(year, files)
+      get_speakers_in_2011(year, files)
     when '2010'
-      talks = get_speakers_in_2010(year, files)
+      get_speakers_in_2010(year, files)
     when '2009'
-      talks = get_speakers_in_2009(year, files)
+      get_speakers_in_2009(year, files)
     when '2008'
-      talks = get_speakers_in_2008(year, files)
+      get_speakers_in_2008(year, files)
     when '2007'
-      talks = get_speakers_in_2007(year, files)
+      get_speakers_in_2007(year, files)
     when '2006'
-      talks = get_speakers_in_2006(year, files)
+      get_speakers_in_2006(year, files)
     end
 
     speakers = speakers.merge(talks) { |_, old, new| old.merge(new) }
@@ -454,5 +458,4 @@ end
 speakers = Hash.new { |h, k| h[k] = {} }
 years = Dir.glob('schedule/*/').map { _1.split('/')[1] }
 
-# TODO: keyが""のデータはバグってるのが混じってそう
 pp get_speakers(speakers, years)

@@ -86,13 +86,14 @@ def get_speakers_since_2022(year, files)
   parsed_html.css('div.m-schedule-item').each do |item|
     names = item.css('span.m-schedule-item-speaker__name').map { |elm| elm.text }
     names.each.with_index do |name, i|
-      next if name.empty?
+      next if name.strip.empty?
       name = unify(name)
       ids = item.css('span.m-schedule-item-speaker__id').map { |elm| elm.text }
       id = ids[i]
       title = item.css('div.m-schedule-item__title').text.strip
       url = item.css("a.m-schedule-item__inner").attribute("href").value.tr('..', '') # tr For 2024
 
+      next if name == "CRuby Committers"
       add_speakers(talks, year, name, id, title, url)
     end
   end
@@ -113,6 +114,7 @@ def get_speakers_in_2021_takeout(year, files)
       title = item.css('div.p-timetable__talk-title').text.strip
       url = item.css('a').first&.attribute('href')&.value
 
+      next if name == "CRuby Committers"
       add_speakers(talks, year, name, id, title, url)
     end
   end
@@ -133,6 +135,8 @@ def get_speakers_2017_to_2020(year, files)
       id = ids[i]
       title = item.css('div.schedule-item__title').text.strip
       url = item.attribute('href').value
+
+      next if name == "CRuby Committers"
 
       add_speakers(talks, year, name, id, title, url)
     end
@@ -155,6 +159,8 @@ def get_speakers_2015_to_2016(year, files)
       title = item.css('div.schedule-table__title').text.strip
       url = item.css('a').first.attribute('href').value
 
+      next if title == "LT speakers (JA -> EN interpreters won't be available)"
+      next if name == "Ruby committers"
       add_speakers(talks, year, name, id, title, url)
     end
   end
@@ -206,6 +212,8 @@ def get_speakers_in_2013(year, files)
       title = item.css('a').text.gsub(/\n/, '').gsub(/^'/, '').gsub(/'$/, '').strip
       url = item.css('a').attribute('href')&.value
 
+      next if title == 'Lightning Talks'
+
       add_speakers(talks, year, name, id, title, url)
     end
   end
@@ -245,8 +253,8 @@ def get_speakers_in_2011(year, files)
       end
 
       # NOTE: Matzと角谷さんと島田さんは2回登壇している。島田さんはたまたまうまくいくので、Matzと角谷さんのみ対応
-      i = 1 if name == "Yukihiro \"Matz\" Matsumoto" && talks[1] == "Lightweight Ruby"
-      i = 0 if name == "Kakutani Shintaro" && talks[0] == "All About RubyKaigi Ecosystem"
+      i = 1 if name == "Yukihiro \"Matz\" Matsumoto" && sessions[1] == "Lightweight Ruby"
+      i = 0 if name == "Kakutani Shintaro" && sessions[0] == "All About RubyKaigi Ecosystem"
       # NOTE: HTMLの構造上取りにくいので直接書き換え
       sessions[i] = "Ruby Ruined My Life." if name == "Aaron Patterson"
 
@@ -447,6 +455,8 @@ def get_speakers(speakers, years)
       get_speakers_in_2007(year, files)
     when '2006'
       get_speakers_in_2006(year, files)
+    else
+      {}
     end
 
     speakers = speakers.merge(talks) { |_, old, new| old.merge(new) }

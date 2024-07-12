@@ -136,7 +136,7 @@ def get_speakers_2017_to_2020(year, files)
       title = item.css('div.schedule-item__title').text.strip
       url = item.attribute('href').value
 
-      next if name == "CRuby Committers"
+      next if name == "CRuby Committers" || name == "mame & the judges"
 
       add_speakers(talks, year, name, id, title, url)
     end
@@ -160,7 +160,7 @@ def get_speakers_2015_to_2016(year, files)
       url = item.css('a').first.attribute('href').value
 
       next if title == "LT speakers (JA -> EN interpreters won't be available)"
-      next if name == "Ruby committers"
+      next if name == "Ruby committers" || name == "@mametter & the judges"
       add_speakers(talks, year, name, id, title, url)
     end
   end
@@ -212,7 +212,7 @@ def get_speakers_in_2013(year, files)
       title = item.css('a').text.gsub(/\n/, '').gsub(/^'/, '').gsub(/'$/, '').strip
       url = item.css('a').attribute('href')&.value
 
-      next if title == 'Lightning Talks'
+      next if title == 'Lightning Talks' || title == "TRICK (Transcendental Ruby Imbroglio Contest for rubyKaigi)"
 
       add_speakers(talks, year, name, id, title, url)
     end

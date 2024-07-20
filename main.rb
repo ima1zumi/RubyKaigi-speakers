@@ -468,4 +468,28 @@ end
 speakers = Hash.new { |h, k| h[k] = {} }
 years = Dir.glob('schedule/*/').map { _1.split('/')[1] }
 
-pp get_speakers(speakers, years)
+get_speakers(speakers, years)
+
+def create_csv(speakers)
+  require 'csv'
+
+  y = speakers.map do |year, talks|
+    talks.map do |name, talks|
+      talks.map do |talk|
+        [name, year, talk[:title]]
+      end
+    end
+  end.flatten(2)
+
+  headers = %w(Name Year Title)
+
+  report = CSV.generate(headers: true) do |csv|
+    csv << headers
+    y.each do |row|
+      csv << row
+    end
+  end
+
+  File.write('speakers.csv', report)
+end
+

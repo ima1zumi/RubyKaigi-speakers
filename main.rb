@@ -349,7 +349,7 @@ def get_speakers_in_2008(year, files)
       names.each do |name|
         name = unify(name)
         id = nil
-        url = file == 'schedule/2008/MainSession_en.html' ? 'https://rubykaigi.org/2008/MainSession.html' : 'https://rubykaigi.org/2008/SubSession.html'
+        url = file == 'schedule/2008/MainSession_en.html' ? '/2008/MainSession.html' : '/2008/SubSession.html'
 
         add_speakers(talks, year, name, id, title, url)
       end
@@ -390,7 +390,7 @@ def get_speakers_in_2007(year, files)
       names.each do |name|
         name = unify(name)
         id = nil
-        url = file
+        url = file.split('schedule')[1]
 
         add_speakers(talks, year, name, id, title, url)
       end
@@ -416,7 +416,7 @@ def get_speakers_in_2006(year, files)
 
       name = unify(name)
       id = nil
-      url = file
+      url = file.split('schedule')[1]
 
       add_speakers(talks, year, name, id, title, url)
     end
@@ -468,7 +468,7 @@ end
 speakers = Hash.new { |h, k| h[k] = {} }
 years = Dir.glob('schedule/*/').map { _1.split('/')[1] }
 
-get_speakers(speakers, years)
+s = get_speakers(speakers, years)
 
 def create_csv(speakers)
   require 'csv'
@@ -476,12 +476,13 @@ def create_csv(speakers)
   y = speakers.map do |year, talks|
     talks.map do |name, talks|
       talks.map do |talk|
-        [name, year, talk[:title]]
+        url = "https://rubykaigi.org#{talk[:url]}"
+        [name, year, talk[:title], url]
       end
     end
   end.flatten(2)
 
-  headers = %w(Name Year Title)
+  headers = %w(Year Name Title URL)
 
   report = CSV.generate(headers: true) do |csv|
     csv << headers
@@ -493,3 +494,4 @@ def create_csv(speakers)
   File.write('speakers.csv', report)
 end
 
+# create_csv(s)

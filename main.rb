@@ -91,7 +91,11 @@ def get_speakers_since_2022(year, files)
       ids = item.css('span.m-schedule-item-speaker__id').map { |elm| elm.text }
       id = ids[i]
       title = item.css('div.m-schedule-item__title').text.strip
-      url = item.css("a.m-schedule-item__inner").attribute("href").value.tr('..', '') # tr For 2024
+      if year == '2024'
+        url = '/2024' + item.css("a.m-schedule-item__inner").attribute("href").value.gsub(/\.\./, '')
+      else
+        url = item.css("a.m-schedule-item__inner").attribute("href").value
+      end
 
       next if name == "CRuby Committers"
       add_speakers(talks, year, name, id, title, url)
@@ -494,4 +498,55 @@ def create_csv(speakers)
   File.write('speakers.csv', report)
 end
 
+def create_html(speakers)
+  require 'erb'
+
+  y = speakers.map do |name, talks|
+    talks.map do |year, talks|
+      talks.map do |talk|
+        url = "<a href='https://rubykaigi.org#{talk[:url]}' target='_blank'>#{talk[:title]}</a>"
+        [year, name, url]
+      end
+    end
+  end.flatten(2)
+
+  template = <<~ERB
+  <html>
+    <head>
+    <title>RubyKaigi Speakers</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css-1.8.0.min.css"/>
+    </head>
+
+    <body>
+      <div class="content pure-u-1 pure-u-md-3-4">
+        <h1>RubyKaigi Speakers</h1>
+        <table class="pure-table pure-table-horizontal">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Name</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% y.each do |row| %>
+            <tr>
+              <td><%= row[0] %></td>
+              <td><%= row[1] %></td>
+              <td><%= row[2] %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </body>
+  </html>
+  ERB
+
+  erb = ERB.new(template).result(binding)
+
+  File.write('index.html', erb)
+end
+
 # create_csv(s)
+create_html(s)

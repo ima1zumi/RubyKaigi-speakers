@@ -328,6 +328,7 @@ def get_speakers_in_2009(year, files)
       name = unify(name)
       id = nil
       title = talk
+      title = 'あらためて仕事で使うRuby' if name == 'Kentaro Goto / ごとけん' && title == '(TBA)'
 
       add_speakers(talks, year, name, id, title, url)
     end
@@ -518,27 +519,26 @@ def create_html(speakers)
     </head>
 
     <body>
-      <div class="content pure-u-1 pure-u-md-3-4">
-        <h1>RubyKaigi Speakers</h1>
-        <table class="pure-table pure-table-horizontal">
-          <thead>
-            <tr>
-              <th>Year</th>
-              <th>Name</th>
-              <th>Title</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% y.each do |row| %>
-            <tr>
-              <td><%= row[0] %></td>
-              <td><%= row[1] %></td>
-              <td><%= row[2] %></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+      <h1>RubyKaigi Speakers</h1>
+      <a href="https://github.com/ima1zumi/RubyKaigi-speakers">Source</a>
+      <table class="pure-table pure-table-horizontal">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Name</th>
+            <th>Title</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% y.each do |row| %>
+          <tr>
+            <td><%= row[0] %></td>
+            <td><%= row[1] %></td>
+            <td><%= row[2] %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </body>
   </html>
   ERB

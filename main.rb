@@ -323,8 +323,9 @@ def get_speakers_in_2009(year, files)
     names = names&.first&.split("、")
     names = names&.first&.split(" and ")
 
-    next if names&.first&.empty? || !names || names == "(Bring your own food/drink)" || names == "(this room will start at 10:00)"
+    next if names&.first&.empty? || !names
     names.each do |name|
+      next if name == "(Bring your own food/drink)" || name == "(this room will start at 10:00)"
       name = unify(name)
       id = nil
       title = talk

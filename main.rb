@@ -217,6 +217,7 @@ def get_speakers_in_2013(year, files)
       url = item.css('a').attribute('href')&.value
 
       next if title == 'Lightning Talks' || title == "TRICK (Transcendental Ruby Imbroglio Contest for rubyKaigi)"
+      next if name == 'Shintaro Kakutani' && title.empty?
 
       add_speakers(talks, year, name, id, title, url)
     end

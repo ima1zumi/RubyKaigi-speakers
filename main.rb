@@ -21,7 +21,7 @@ def unify(name)
     "Sutou Kouhei"
   when "moro"
     "Kyosuke MOROHASHI"
-  when "Kakutani Shintaro"
+  when "Kakutani Shintaro", "KAKUTANI Shintaro"
     "Shintaro Kakutani"
   when "Toshiaki KOSHIBA"
     "Toshiaki Koshiba"
@@ -29,7 +29,7 @@ def unify(name)
     "Aaron Patterson"
   when "Tomoyuki Chikanaga"
     "nagachika"
-  when "Akira “akr” Tanaka"
+  when "Akira “akr” Tanaka", "Akira TANAKA", "田中 哲", "田中哲"
     "Tanaka Akira"
   when "SHIGERU NAKAJIMA"
     "Shigeru Nakajima"
@@ -43,8 +43,6 @@ def unify(name)
     "Koichi Sasada"
   when "Yui NARUSE"
     "NARUSE, Yui"
-  when "Akira TANAKA"
-    "Tanaka Akira"
   when "Charles O. Nutter"
     "Charles Nutter"
   when "Thomas Enebo"
@@ -57,8 +55,6 @@ def unify(name)
     "Masatoshi SEKI"
   when "高橋征義"
     "Masayoshi Takahashi"
-  when "田中 哲", "田中哲"
-    "Tanaka Akira"
   when "石塚圭樹"
     "Keiju Ishitsuka"
   when "Kentaro GOTO", "後藤謙太郎", "Kentaro Goto", "gotoken"
@@ -327,7 +323,7 @@ def get_speakers_in_2009(year, files)
     next if names&.first&.empty? || !names
     names.each do |name|
       next if name == "(Bring your own food/drink)" || name == "(this room will start at 10:00)"
-      name = unify(name)
+      name = unify(name.strip)
       id = nil
       title = talk
       title = 'あらためて仕事で使うRuby' if name == 'Kentaro Goto / ごとけん' && title == '(TBA)'

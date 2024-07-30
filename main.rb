@@ -191,19 +191,17 @@ def get_speakers_in_2013(year, files)
   talks = Hash.new { |h, k| h[k] = {} }
   parsed_html = Nokogiri::HTML.parse(File.open(files.first))
 
+  not_names = ['HOME', 'SCHEDULE', 'SPEAKERS', 'FOR ATTENDEES', 'GOODIES', 'SPONSORS', 'Team', '(Hall B will start at 10:30am today)']
+  exclude_talks = ['Lightning Talks', 'TRICK (Transcendental Ruby Imbroglio Contest for rubyKaigi)']
+
   parsed_html.css('li').each.with_index do |item, i|
     names = item.text.split("\n").last.split(",").map { |name| name.lstrip }
     # NOTE: Speakerと関係ないものを除外
-    # TODO: 正規表現にしたい
-    names = names.delete_if do |name|
-      if name == 'HOME' || name == 'SCHEDULE' || name == 'SPEAKERS' || name == 'FOR ATTENDEES' || name == 'GOODIES' || name == 'SPONSORS'
-        true
-      else
-        false
-      end
-    end
-    # NOTE: 多分2名扱いにならないように統一
+    names = names.delete_if { |name| not_names.include?(name) }
+
+    # NOTE: 2名扱いにならないように統一
     names = ["nagachika"] if names == ["Tomoyuki", "Chikanaga"]
+    names = ["Kyosuke MOROHASHI"] if names == ["moro", "Kyosuke MOROHASHI"]
 
     names.each do |name|
       next if name.empty?
@@ -212,8 +210,7 @@ def get_speakers_in_2013(year, files)
       title = item.css('a').text.gsub(/\n/, '').gsub(/^'/, '').gsub(/'$/, '').strip
       url = item.css('a').attribute('href')&.value
 
-      next if title == 'Lightning Talks' || title == "TRICK (Transcendental Ruby Imbroglio Contest for rubyKaigi)"
-      next if name == 'Shintaro Kakutani' && title.empty?
+      next if exclude_talks.include?(title) || title.empty?
 
       add_speakers(talks, year, name, id, title, url)
     end

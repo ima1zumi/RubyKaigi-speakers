@@ -510,30 +510,38 @@ def create_html(speakers, path = '')
   <html>
     <head>
     <title>RubyKaigi Speakers</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
     </head>
 
     <body>
-      <h1>RubyKaigi Speakers</h1>
-      <a href="https://github.com/ima1zumi/RubyKaigi-speakers">Source</a>
-      <table class="pure-table pure-table-horizontal">
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th>Name</th>
-            <th>Title</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% y.each do |row| %>
-          <tr>
-            <td><a href='<%= row[0] %>'><%= row[0] %></a></td>
-            <td><%= row[1] %></td>
-            <td><%= row[2] %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="container">
+        <div class="row">
+          <div class="column">
+            <h1><a href="../index.html">RubyKaigi Speakers</a></h1>
+            <a href="https://github.com/ima1zumi/RubyKaigi-speakers">Source</a>
+            <table class="pure-table pure-table-horizontal">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Name</th>
+                  <th>Title</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% y.each do |row| %>
+                <tr>
+                  <td><a href='<%= row[0] %>'><%= row[0] %></a></td>
+                  <td><%= row[1] %></td>
+                  <td><%= row[2] %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </body>
   </html>
   ERB

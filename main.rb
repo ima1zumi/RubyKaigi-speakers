@@ -510,7 +510,7 @@ def create_html(speakers, path = '')
   <html>
     <head>
     <title>RubyKaigi Speakers</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css-1.8.0.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     </head>
 
     <body>

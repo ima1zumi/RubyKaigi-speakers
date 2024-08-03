@@ -411,7 +411,7 @@ def get_speakers_in_2006(year, files)
       heading = item.text.strip
       next if not_talks.include?(heading)
       title = heading.match(/「(.*)」/)[1]
-      name = heading.split('「')[0].strip.tr('基調講演: ', '')
+      name = heading.split('「')[0].tr('基調講演:', '').lstrip.rstrip
       next if lightning_talks.include?(title)
 
       name = unify(name)

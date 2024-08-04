@@ -324,6 +324,7 @@ def get_speakers_in_2009(year, files)
       id = nil
       title = talk
       title = 'あらためて仕事で使うRuby' if name == 'Kentaro Goto / ごとけん' && title == '(TBA)'
+      title = 'ビジネスユースでのRuby導入のポイントと解決策' if name == 'Katsutoshi Kojima' && title == '(TBA)'
 
       add_speakers(talks, year, name, id, title, url)
     end

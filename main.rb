@@ -62,6 +62,8 @@ def unify(name)
     "Kentaro Goto / ごとけん"
   when "前田修吾", "Shugo MAEDA"
     "Shugo Maeda"
+  when "Daisuke Aritomo"
+    "Daisuke Aritomo (osyoyu)"
   else
     name
   end
@@ -595,6 +597,7 @@ def create_html_each_year(years)
 end
 
 def create_html_each_speaker(speakers)
+  FileUtils.rm_rf('speakers/') if File.exist?('speakers/')
   speakers.each do |talks|
     t = {talks[0] => talks[1]}
     name = URI.encode_www_form_component(talks[0])

@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'fileutils'
 
 years = {
   '2024' => ['https://rubykaigi.org/2024/schedule/index.html'],
@@ -22,7 +23,8 @@ years = {
 }
 
 years.each do |year, uris|
-  Dir.mkdir("schedule/#{year}") unless Dir.exist?("schedule/#{year}")
+  path = "schedule/#{year}"
+  FileUtils.mkdir_p(path) unless File.exist?(path)
   uris.each do |uri|
     URI.open(uri) do |response|
       filename = uri.match(/(\d{4}-takeout|\d{4})\/(.*html)/)[2]

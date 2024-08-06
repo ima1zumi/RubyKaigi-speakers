@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'uri'
 
 # NOTE: 新しい方に合わせる
 def unify(name)
@@ -535,7 +536,7 @@ def create_html(speakers, path = '')
                 <% y.each do |row| %>
                 <tr>
                   <td><a href='<%= row[0] %>'><%= row[0] %></a></td>
-                  <td><%= row[1] %></td>
+                  <td><a href='<%= 'spakers/' + URI.encode_www_form_component(row[1]) %>'><%= row[1] %></a></td>
                   <td><%= row[2] %></td>
                 </tr>
                 <% end %>
@@ -593,5 +594,16 @@ def create_html_each_year(years)
   end
 end
 
+def create_html_each_speaker(speakers)
+  speakers.each do |talks|
+    t = {talks[0] => talks[1]}
+    name = URI.encode_www_form_component(talks[0])
+    path = "speakers/#{name}"
+    FileUtils.mkdir_p(path) unless File.exist?(path)
+    create_html(t, "#{path}/")
+  end
+end
+
 create_html(s)
 create_html_each_year(years)
+create_html_each_speaker(s)

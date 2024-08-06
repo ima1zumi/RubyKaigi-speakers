@@ -536,7 +536,7 @@ def create_html(speakers, path = '')
                 <% y.each do |row| %>
                 <tr>
                   <td><a href='<%= row[0] %>'><%= row[0] %></a></td>
-                  <td><a href='<%= 'spakers/' + URI.encode_www_form_component(row[1]) %>'><%= row[1] %></a></td>
+                  <td><a href='<%= 'speakers/' + URI.encode_www_form_component(row[1]) %>'><%= row[1] %></a></td>
                   <td><%= row[2] %></td>
                 </tr>
                 <% end %>

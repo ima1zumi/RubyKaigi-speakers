@@ -1,73 +1,6 @@
 require 'nokogiri'
 require 'uri'
-
-# NOTE: 新しい方に合わせる
-def unify(name)
-  case name
-  when "SHIBATA Hiroshi"
-    "Hiroshi SHIBATA"
-  when "TAGOMORI \"moris\" Satoshi", "tagomoris", "Satoshi \"moris\" Tagomori"
-    "Satoshi Tagomori"
-  when "Thomas E. Enebo"
-    "Thomas E Enebo"
-  when "Haruka Iwao"
-    "Emma Haruka Iwao"
-  when "YUKI TORII"
-    "Yuki Torii"
-  when "Yukihiro Matsumoto", "Yukihiro \"matz\" MATSUMOTO", "まつもとゆきひろ", "Matz"
-    "Yukihiro \"Matz\" Matsumoto"
-  when "MayumiI EMORI(emorima)"
-    "Mayumi EMORI"
-  when "Kouhei Sutou"
-    "Sutou Kouhei"
-  when "moro"
-    "Kyosuke MOROHASHI"
-  when "Kakutani Shintaro", "KAKUTANI Shintaro"
-    "Shintaro Kakutani"
-  when "Toshiaki KOSHIBA"
-    "Toshiaki Koshiba"
-  when "Aaron Patterson (tenderlove)"
-    "Aaron Patterson"
-  when "Tomoyuki Chikanaga"
-    "nagachika"
-  when "Akira “akr” Tanaka", "Akira TANAKA", "田中 哲", "田中哲"
-    "Tanaka Akira"
-  when "SHIGERU NAKAJIMA"
-    "Shigeru Nakajima"
-  when "Yugui - Yuki Sonoda", "Yugui (Yuki SONODA)"
-    "Yugui"
-  when "tenderlove"
-    "Aaron Patterson"
-  when "Shyouhei Urabe", "Urabe Shyouhei"
-    "Urabe, Shyouhei"
-  when "Koichi SASADA"
-    "Koichi Sasada"
-  when "Yui NARUSE"
-    "NARUSE, Yui"
-  when "Charles O. Nutter"
-    "Charles Nutter"
-  when "Thomas Enebo"
-    "Thomas E Enebo"
-  when "Akio Tajima aka arton"
-    "arton"
-  when "Yutaka Hara"
-    "Yutaka HARA"
-  when "関将俊"
-    "Masatoshi SEKI"
-  when "高橋征義"
-    "Masayoshi Takahashi"
-  when "石塚圭樹"
-    "Keiju Ishitsuka"
-  when "Kentaro GOTO", "後藤謙太郎", "Kentaro Goto", "gotoken"
-    "Kentaro Goto / ごとけん"
-  when "前田修吾", "Shugo MAEDA"
-    "Shugo Maeda"
-  when "Daisuke Aritomo"
-    "Daisuke Aritomo (osyoyu)"
-  else
-    name
-  end
-end
+require_relative 'lib/speaker_normalizer'
 
 def add_speakers(talks, year, name, id, title, url)
   talks[name][year] ||= []
@@ -86,7 +19,7 @@ def get_speakers_since_2022(year, files)
     names = item.css('span.m-schedule-item-speaker__name').map { |elm| elm.text }
     names.each.with_index do |name, i|
       next if name.strip.empty?
-      name = unify(name)
+      name = SpeakerNormalizer.unify(name)
       ids = item.css('span.m-schedule-item-speaker__id').map { |elm| elm.text }
       id = ids[i]
       title = item.css('div.m-schedule-item__title').text.strip
@@ -111,7 +44,7 @@ def get_speakers_in_2021_takeout(year, files)
   parsed_html.css('div.p-timetable__track').each do |item|
     names = item.css('span.p-timetable__speaker-name').map { |elm| elm.text.strip }
     names.each.with_index do |name, i|
-      name = unify(name)
+      name = SpeakerNormalizer.unify(name)
       ids = item.css('span.p-timetable__speaker-sns').map { |elm| elm.text.strip }
       id = ids[i]
       title = item.css('div.p-timetable__talk-title').text.strip
@@ -133,7 +66,7 @@ def get_speakers_2017_to_2020(year, files)
     names = item.css('span.schedule-item-speaker__name').map { |elm| elm.text.strip }
     names.each.with_index do |name, i|
       next if name.empty?
-      name = unify(name)
+      name = SpeakerNormalizer.unify(name)
       ids = item.css('span.schedule-item-speaker__id').map { |elm| elm.text.strip }
       id = ids[i]
       title = item.css('div.schedule-item__title').text.strip
@@ -156,7 +89,7 @@ def get_speakers_2015_to_2016(year, files)
     names = item.css('span.schedule-table__name').map { |elm| elm.text.strip }
     names.each.with_index do |name, i|
       next if name.empty?
-      name = unify(name)
+      name = SpeakerNormalizer.unify(name)
       ids = item.css('span.schedule-table__id').map { |elm| elm.text.strip }
       id = ids[i]
       title = item.css('div.schedule-table__title').text.strip
@@ -178,7 +111,7 @@ def get_speakers_in_2014(year, files)
   parsed_html.css('td').each do |item|
     names = item.css('p.speakerName').text.strip.gsub(/\[.*\]/, '').split(",").map { |name| name.lstrip }
     names.each do |name|
-      name = unify(name)
+      name = SpeakerNormalizer.unify(name)
       id = nil
       title = item.css('a.presentationTitle').text.strip
       url = item.css('a.presentationTitle').attribute('href').value
@@ -208,7 +141,7 @@ def get_speakers_in_2013(year, files)
 
     names.each do |name|
       next if name.empty?
-      name = unify(name)
+      name = SpeakerNormalizer.unify(name)
       id = nil
       title = item.css('a').text.gsub(/\n/, '').gsub(/^'/, '').gsub(/'$/, '').strip
       url = item.css('a').attribute('href')&.value
@@ -235,7 +168,7 @@ def get_speakers_in_2011(year, files)
       elm.attribute('href').value
     end
     names.each.with_index do |name, i|
-      name = unify(name)
+      name = SpeakerNormalizer.unify(name)
       case name
       when "Koichiro Ohba"
         i = 0
@@ -296,7 +229,7 @@ def get_speakers_in_2010(year, files)
     next if names.first&.empty?
     names.each do |name|
       next if name.nil?
-      name = unify(name)
+      name = SpeakerNormalizer.unify(name)
       id = nil
       title = talk
 
@@ -323,7 +256,7 @@ def get_speakers_in_2009(year, files)
     next if names&.first&.empty? || !names
     names.each do |name|
       next if name == "(Bring your own food/drink)" || name == "(this room will start at 10:00)"
-      name = unify(name.strip)
+      name = SpeakerNormalizer.unify(name.strip)
       id = nil
       title = talk
       title = 'あらためて仕事で使うRuby' if name == 'Kentaro Goto / ごとけん' && title == '(TBA)'
@@ -352,7 +285,7 @@ def get_speakers_in_2008(year, files)
       names = heading.rpartition('-')[2].gsub(/\[English\]/, '').gsub(/,.*/, '').strip.split("/")
 
       names.each do |name|
-        name = unify(name)
+        name = SpeakerNormalizer.unify(name)
         id = nil
         url = file == 'schedule/2008/MainSession_en.html' ? '/2008/MainSession.html' : '/2008/SubSession.html'
 
@@ -393,7 +326,7 @@ def get_speakers_in_2007(year, files)
       end
 
       names.each do |name|
-        name = unify(name)
+        name = SpeakerNormalizer.unify(name)
         id = nil
         url = file.split('schedule')[1]
 
@@ -419,7 +352,7 @@ def get_speakers_in_2006(year, files)
       name = heading.split('「')[0].tr('基調講演:', '').lstrip.rstrip
       next if lightning_talks.include?(title)
 
-      name = unify(name)
+      name = SpeakerNormalizer.unify(name)
       id = nil
       url = file.split('schedule')[1]
 

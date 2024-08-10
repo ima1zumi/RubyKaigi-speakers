@@ -29,7 +29,6 @@ def get_speakers_since_2022(year, files)
         url = item.css("a.m-schedule-item__inner").attribute("href").value
       end
 
-      next if name == "CRuby Committers"
       add_speakers(talks, year, name, id, title, url)
     end
   end
@@ -50,7 +49,6 @@ def get_speakers_in_2021_takeout(year, files)
       title = item.css('div.p-timetable__talk-title').text.strip
       url = item.css('a').first&.attribute('href')&.value
 
-      next if name == "CRuby Committers"
       add_speakers(talks, year, name, id, title, url)
     end
   end
@@ -71,8 +69,6 @@ def get_speakers_2017_to_2020(year, files)
       id = ids[i]
       title = item.css('div.schedule-item__title').text.strip
       url = item.attribute('href').value
-
-      next if name == "CRuby Committers" || name == "mame & the judges"
 
       add_speakers(talks, year, name, id, title, url)
     end
@@ -96,7 +92,6 @@ def get_speakers_2015_to_2016(year, files)
       url = item.css('a').first.attribute('href').value
 
       next if title == "LT speakers (JA -> EN interpreters won't be available)"
-      next if name == "Ruby committers" || name == "@mametter & the judges"
       add_speakers(talks, year, name, id, title, url)
     end
   end
@@ -128,7 +123,7 @@ def get_speakers_in_2013(year, files)
   parsed_html = Nokogiri::HTML.parse(File.open(files.first))
 
   not_names = ['HOME', 'SCHEDULE', 'SPEAKERS', 'FOR ATTENDEES', 'GOODIES', 'SPONSORS', 'Team', '(Hall B will start at 10:30am today)']
-  exclude_talks = ['Lightning Talks', 'TRICK (Transcendental Ruby Imbroglio Contest for rubyKaigi)']
+  exclude_talks = ['Lightning Talks']
 
   parsed_html.css('li').each.with_index do |item, i|
     names = item.text.split("\n").last.split(",").map { |name| name.lstrip }

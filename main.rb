@@ -91,7 +91,6 @@ def get_speakers_2015_to_2016(year, files)
       title = item.css('div.schedule-table__title').text.strip
       url = item.css('a').first.attribute('href').value
 
-      next if title == "LT speakers (JA -> EN interpreters won't be available)"
       add_speakers(talks, year, name, id, title, url)
     end
   end
@@ -123,7 +122,6 @@ def get_speakers_in_2013(year, files)
   parsed_html = Nokogiri::HTML.parse(File.open(files.first))
 
   not_names = ['HOME', 'SCHEDULE', 'SPEAKERS', 'FOR ATTENDEES', 'GOODIES', 'SPONSORS', 'Team', '(Hall B will start at 10:30am today)']
-  exclude_talks = ['Lightning Talks']
 
   parsed_html.css('li').each.with_index do |item, i|
     names = item.text.split("\n").last.split(",").map { |name| name.lstrip }
@@ -141,7 +139,7 @@ def get_speakers_in_2013(year, files)
       title = item.css('a').text.gsub(/\n/, '').gsub(/^'/, '').gsub(/'$/, '').strip
       url = item.css('a').attribute('href')&.value
 
-      next if exclude_talks.include?(title) || title.empty?
+      next if title.empty?
 
       add_speakers(talks, year, name, id, title, url)
     end
@@ -336,7 +334,6 @@ end
 
 def get_speakers_in_2006(year, files)
   not_talks = ['パネリスト', 'コメンテータ', '司会']
-  lightning_talks = ['BioRuby', 'RubyCocoaで作るMacアプリケーション', 'RubyによるHL7プロトコルライブラリ', 'Ruby On Rails の Relative Path プラグイン', 'Rails製CMS「Rubricks」', 'わりと簡単rubyアプリをDebianへ', 'Ruby on 風博士', 'なぜブロックは素晴らしいか -- RubyがLispでない理由', 'Ruby Reference Seeker for Emacsen', '人工無能 ロイディ', 'インターネット物理モデル: または私はいかにして悩むのをやめ転がる玉を愛するようになったか']
 
   talks = Hash.new { |h, k| h[k] = {} }
   files.each do |file|
@@ -346,7 +343,6 @@ def get_speakers_in_2006(year, files)
       next if not_talks.include?(heading)
       title = heading.match(/「(.*)」/)[1]
       name = heading.split('「')[0].tr('基調講演:', '').lstrip.rstrip
-      next if lightning_talks.include?(title)
 
       name = SpeakerNormalizer.unify(name)
       id = nil

@@ -400,30 +400,6 @@ years = Dir.glob('schedule/*/').map { _1.split('/')[1] }
 
 s = get_speakers(speakers, years)
 
-def create_csv(speakers)
-  require 'csv'
-
-  y = speakers.map do |year, talks|
-    talks.map do |name, talks|
-      talks.map do |talk|
-        url = "https://rubykaigi.org#{talk[:url]}"
-        [name, year, talk[:title], url]
-      end
-    end
-  end.flatten(2)
-
-  headers = %w(Year Name Title URL)
-
-  report = CSV.generate(headers: true) do |csv|
-    csv << headers
-    y.each do |row|
-      csv << row
-    end
-  end
-
-  File.write('speakers.csv', report)
-end
-
 def create_html(speakers, path = '')
   require 'erb'
 

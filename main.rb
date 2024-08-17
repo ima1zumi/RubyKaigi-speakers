@@ -1,6 +1,9 @@
 require 'nokogiri'
 require 'uri'
 require_relative 'lib/speaker_normalizer'
+require_relative 'lib/html_generator'
+
+YEARS = ["2006", "2007", "2008", "2009", "2010", "2011", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020-takeout", "2021-takeout", "2022", "2023", "2024"]
 
 def add_speakers(talks, year, name, id, title, url)
   talks[name][year] ||= []
@@ -396,79 +399,5 @@ def get_speakers(speakers, years)
 end
 
 speakers = Hash.new { |h, k| h[k] = {} }
-years = Dir.glob('schedule/*/').map { _1.split('/')[1] }
-
-s = get_speakers(speakers, years)
-
-def create_html(speakers, path = '')
-  require 'erb'
-
-  y = speakers.map do |name, talks|
-    talks.map do |year, talks|
-      talks.map do |talk|
-        url = "<a href='https://rubykaigi.org#{talk[:url]}' target='_blank'>#{talk[:title]}</a>"
-        [year, name, url]
-      end
-    end
-  end.flatten(2)
-
-  template = File.read('lib/indek.html.erb')
-  erb = ERB.new(template).result(binding)
-
-  File.write("#{path}index.html", erb)
-end
-
-def create_html_each_year(years)
-  years.each do |year|
-    files = Dir.glob("schedule/#{year}/*")
-    talks = {}
-
-    talks = case year
-    when '2024', '2023', '2022'
-      get_speakers_since_2022(year, files)
-    when '2021-takeout'
-      get_speakers_in_2021_takeout(year, files)
-    when '2020-takeout', '2019', '2018', '2017'
-      get_speakers_2017_to_2020(year, files)
-    when '2016', '2015'
-      get_speakers_2015_to_2016(year, files)
-    when '2014'
-      get_speakers_in_2014(year, files)
-    when '2013'
-      get_speakers_in_2013(year, files)
-    when '2011'
-      get_speakers_in_2011(year, files)
-    when '2010'
-      get_speakers_in_2010(year, files)
-    when '2009'
-      get_speakers_in_2009(year, files)
-    when '2008'
-      get_speakers_in_2008(year, files)
-    when '2007'
-      get_speakers_in_2007(year, files)
-    when '2006'
-      get_speakers_in_2006(year, files)
-    else
-      {}
-    end
-
-    path = year
-    FileUtils.mkdir_p(path) unless File.exist?(path)
-    create_html(talks, "#{path}/")
-  end
-end
-
-def create_html_each_speaker(speakers)
-  FileUtils.rm_rf('speakers/') if File.exist?('speakers/')
-  speakers.each do |talks|
-    t = {talks[0] => talks[1]}
-    name = URI.encode_www_form_component(talks[0])
-    path = "speakers/#{name}"
-    FileUtils.mkdir_p(path) unless File.exist?(path)
-    create_html(t, "#{path}/")
-  end
-end
-
-create_html(s)
-create_html_each_year(years)
-create_html_each_speaker(s)
+s = get_speakers(speakers, YEARS)
+HtmlGenerator.new(s, YEARS).generate_all_page

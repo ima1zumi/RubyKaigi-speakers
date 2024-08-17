@@ -21,7 +21,7 @@
               </tr>
             </thead>
             <tbody>
-              <% y.each do |row| %>
+              <% talks.each do |row| %>
               <tr>
                 <td><a href='<%= row[0] %>'><%= row[0] %></a></td>
                 <td><a href='<%= 'speakers/' + URI.encode_www_form_component(row[1]) %>'><%= row[1] %></a></td>

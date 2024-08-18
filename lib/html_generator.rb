@@ -1,4 +1,5 @@
 require 'erb'
+require 'uri'
 
 class HtmlGenerator
   def initialize(speakers, years)
@@ -50,7 +51,7 @@ class HtmlGenerator
       result = {talks[0] => talks[1]} # {name: {year: [{id:, title:, url:}]}}
       name = URI.encode_www_form_component(talks[0])
       path = "speakers/#{name}"
-        FileUtils.mkdir_p(path) unless File.exist?(path)
+      FileUtils.mkdir_p(path) unless File.exist?(path)
       create_html(result, "#{path}/")
     end
   end

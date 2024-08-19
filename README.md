@@ -1,9 +1,14 @@
 ## RubyKaigi Speakers
 
+Speakers and Talks List for RubyKaigi
+
+https://rubykaigi-speakers.vercel.app/
+
+## Development
+
 ```
 bundle install
-mkdir schedule
-bundle exec ruby get_html.rb
+bundle exec ruby downloader.rb
 bundle exec ruby main.rb
 ```
 

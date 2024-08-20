@@ -16,7 +16,7 @@ class SpeakerNormalizer
       "Yukihiro \"Matz\" Matsumoto"
     when "MayumiI EMORI(emorima)"
       "Mayumi EMORI"
-    when "Kouhei Sutou"
+    when "Kouhei Sutou", "須藤功平"
       "Sutou Kouhei"
     when "moro"
       "Kyosuke MOROHASHI"
@@ -62,6 +62,16 @@ class SpeakerNormalizer
       "Shugo Maeda"
     when "Daisuke Aritomo"
       "Daisuke Aritomo (osyoyu)"
+    when "Minero Aoki"
+      "Minero AOKI"
+    when "Koichiro OHBA"
+      "Koichiro Ohba"
+    when "ujihisa", "Tatsuhiro UJIHISA"
+      "Tatsuhiro Ujihisa"
+    when "Soutaro MATSUMOTO"
+      "Soutaro Matsumoto"
+    when "Kei Sawada"
+      "Kei Sawada"
     else
       name
     end

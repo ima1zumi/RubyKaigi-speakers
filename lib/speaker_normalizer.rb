@@ -71,7 +71,7 @@ class SpeakerNormalizer
     when "Soutaro MATSUMOTO"
       "Soutaro Matsumoto"
     when "Kei Sawada"
-      "Kei Sawada"
+      "Kay Sawada"
     else
       name
     end

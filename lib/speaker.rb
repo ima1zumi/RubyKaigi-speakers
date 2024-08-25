@@ -308,29 +308,29 @@ class Speaker
         next if not_talks.include?(heading)
 
         title = heading[/.*(?=\()/]&.rstrip || heading
-                            names = heading.split('(')[1]&.gsub(/\)/, '')&.split("/")&.map(&:strip)
-                            if names.nil?
-                              names = [keynotes[title]]
-                            end
+        names = heading.split('(')[1]&.gsub(/\)/, '')&.split("/")&.map(&:strip)
+        if names.nil?
+          names = [keynotes[title]]
+        end
 
-                            # NOTE: 取りにくいので直接書き換え
-                            case title
-                            when "Windows GUI Development with Project 'VisualuRuby' (nyasu"
-                                                                                      title = "Windows GUI Development with Project 'VisualuRuby'"
-                                                                                      names = ['nyasu (NISHIKAWA Yasuhiro)']
-                            when 'YAR(V)I: Yet Another Ruby(on VM) Implementations'
-                              names = ['Akio Tajima aka arton']
-                            when 'AP4R : Asynchronous Messaging Library for Ruby'
-                              names = ["Shun'ichi Shinohara", 'Kiwamu Kato']
-                            end
+        # NOTE: 取りにくいので直接書き換え
+        case title
+        when "Windows GUI Development with Project 'VisualuRuby' (nyasu"
+                                                                  title = "Windows GUI Development with Project 'VisualuRuby'"
+                                                                  names = ['nyasu (NISHIKAWA Yasuhiro)']
+        when 'YAR(V)I: Yet Another Ruby(on VM) Implementations'
+          names = ['Akio Tajima aka arton']
+        when 'AP4R : Asynchronous Messaging Library for Ruby'
+          names = ["Shun'ichi Shinohara", 'Kiwamu Kato']
+        end
 
-                            names.each do |name|
-                              name = SpeakerNormalizer.unify(name)
-                              id = nil
-                              url = file.split('schedule')[1]
+        names.each do |name|
+          name = SpeakerNormalizer.unify(name)
+          id = nil
+          url = file.split('schedule')[1]
 
-                              add_speakers(talks, year, name, id, title, url)
-                            end
+          add_speakers(talks, year, name, id, title, url)
+        end
       end
     end
 

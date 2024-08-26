@@ -12,6 +12,8 @@ class SpeakerNormalizer
       "Naoto Takai"
     when "Yuichi TATENO"
       "Yuichi Tateno"
+    when "authorNari", "nari"
+      "Narihiro Nakamura"
     when "SHIBATA Hiroshi"
       "Hiroshi SHIBATA"
     when "TAGOMORI \"moris\" Satoshi", "tagomoris", "Satoshi \"moris\" Tagomori"

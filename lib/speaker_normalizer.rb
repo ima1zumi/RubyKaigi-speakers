@@ -34,6 +34,8 @@ class SpeakerNormalizer
       "MATSUMOTO, Ryosuke"
     when "Yusuke Endoh & the judges", "@mametter & the judges"
       "mame & the judges"
+    when "youchan"
+      "Yoh Osaki"
     when "YUKI TORII"
       "Yuki Torii"
     when "Yukihiro Matsumoto", "Yukihiro \"matz\" MATSUMOTO", "まつもとゆきひろ", "Matz"

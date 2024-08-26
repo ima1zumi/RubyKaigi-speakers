@@ -18,6 +18,8 @@ class SpeakerNormalizer
       "Narihiro Nakamura"
     when "SHIBATA Hiroshi"
       "Hiroshi SHIBATA"
+    when "TAKAO Kouji"
+      "Kouji Takao"
     when "TAGOMORI \"moris\" Satoshi", "tagomoris", "Satoshi \"moris\" Tagomori"
       "Satoshi Tagomori"
     when "Thomas E. Enebo"

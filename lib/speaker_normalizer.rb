@@ -20,6 +20,8 @@ class SpeakerNormalizer
       "Hiroshi SHIBATA"
     when "TAKAO Kouji"
       "Kouji Takao"
+    when 'Paolo "Nusco" Perrotta'
+      "Paolo Perrotta"
     when "TAGOMORI \"moris\" Satoshi", "tagomoris", "Satoshi \"moris\" Tagomori"
       "Satoshi Tagomori"
     when "Thomas E. Enebo"

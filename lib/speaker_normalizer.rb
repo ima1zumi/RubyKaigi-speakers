@@ -2,6 +2,8 @@ class SpeakerNormalizer
   # NOTE: Conform to the new name
   def self.unify(name)
     case name
+    when "江渡 浩一郎"
+      "Kouichirou ETO"
     when "Naoto TAKAI"
       "Naoto Takai"
     when "Yuichi TATENO"

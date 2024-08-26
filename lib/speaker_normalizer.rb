@@ -26,6 +26,8 @@ class SpeakerNormalizer
       "Satoshi Tagomori"
     when "Thomas E. Enebo"
       "Thomas E Enebo"
+    when "Zachary Scott"
+      "zzak"
     when "Haruka Iwao"
       "Emma Haruka Iwao"
     when "YUKI TORII"

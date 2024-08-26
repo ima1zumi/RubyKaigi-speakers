@@ -30,6 +30,8 @@ class SpeakerNormalizer
       "zzak"
     when "Haruka Iwao"
       "Emma Haruka Iwao"
+    when "MATSUMOTO Ryosuke"
+      "MATSUMOTO, Ryosuke"
     when "YUKI TORII"
       "Yuki Torii"
     when "Yukihiro Matsumoto", "Yukihiro \"matz\" MATSUMOTO", "まつもとゆきひろ", "Matz"

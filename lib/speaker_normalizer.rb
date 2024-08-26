@@ -96,6 +96,8 @@ class SpeakerNormalizer
       "Soutaro Matsumoto"
     when "Kei Sawada"
       "Kay Sawada"
+    when "Kevin Deisz"
+      "Kevin Newton"
     else
       name
     end

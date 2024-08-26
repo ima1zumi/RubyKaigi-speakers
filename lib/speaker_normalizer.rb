@@ -4,6 +4,8 @@ class SpeakerNormalizer
     case name
     when "Naoto TAKAI"
       "Naoto Takai"
+    when "Yuichi TATENO"
+      "Yuichi Tateno"
     when "SHIBATA Hiroshi"
       "Hiroshi SHIBATA"
     when "TAGOMORI \"moris\" Satoshi", "tagomoris", "Satoshi \"moris\" Tagomori"

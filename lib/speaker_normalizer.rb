@@ -4,6 +4,8 @@ class SpeakerNormalizer
     case name
     when "江渡 浩一郎"
       "Kouichirou ETO"
+    when "藤本尚邦"
+      "Fujimoto Hisa"
     when "Naoto TAKAI"
       "Naoto Takai"
     when "Yuichi TATENO"

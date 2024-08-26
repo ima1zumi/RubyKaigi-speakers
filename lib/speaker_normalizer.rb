@@ -32,6 +32,8 @@ class SpeakerNormalizer
       "Emma Haruka Iwao"
     when "MATSUMOTO Ryosuke"
       "MATSUMOTO, Ryosuke"
+    when "Yusuke Endoh & the judges", "@mametter & the judges"
+      "mame & the judges"
     when "YUKI TORII"
       "Yuki Torii"
     when "Yukihiro Matsumoto", "Yukihiro \"matz\" MATSUMOTO", "まつもとゆきひろ", "Matz"

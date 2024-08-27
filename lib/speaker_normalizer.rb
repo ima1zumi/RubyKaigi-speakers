@@ -2,7 +2,7 @@ class SpeakerNormalizer
   # NOTE: Conform to the new name
   def self.unify(name)
     case name
-    when "arton"
+    when "arton", "Akio Tajima aka arton"
       "Akio Tajima"
     when "江渡 浩一郎"
       "Kouichirou ETO"
@@ -64,8 +64,6 @@ class SpeakerNormalizer
       "Charles Nutter"
     when "Thomas Enebo"
       "Thomas E Enebo"
-    when "Akio Tajima aka arton"
-      "arton"
     when "Yutaka Hara"
       "Yutaka HARA"
     when "関将俊"

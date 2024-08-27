@@ -2,8 +2,26 @@ class SpeakerNormalizer
   # NOTE: Conform to the new name
   def self.unify(name)
     case name
+    when "arton"
+      "Akio Tajima"
+    when "江渡 浩一郎"
+      "Kouichirou ETO"
+    when "大林一平", "Ippei OHBAYASHI"
+      "Ippei Obayashi"
+    when "藤本尚邦"
+      "Fujimoto Hisa"
+    when "Naoto TAKAI"
+      "Naoto Takai"
+    when "Yuichi TATENO"
+      "Yuichi Tateno"
+    when "authorNari", "nari"
+      "Narihiro Nakamura"
     when "SHIBATA Hiroshi"
       "Hiroshi SHIBATA"
+    when "TAKAO Kouji"
+      "Kouji Takao"
+    when 'Paolo "Nusco" Perrotta'
+      "Paolo Perrotta"
     when "TAGOMORI \"moris\" Satoshi", "tagomoris", "Satoshi \"moris\" Tagomori"
       "Satoshi Tagomori"
     when "Thomas E. Enebo"

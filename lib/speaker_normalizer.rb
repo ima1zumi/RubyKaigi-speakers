@@ -12,7 +12,7 @@ class SpeakerNormalizer
       "Fujimoto Hisa"
     when "Naoto TAKAI"
       "Naoto Takai"
-    when "Yuichi TATENO"
+    when "secondlife(舘野祐一)", "Yuichi TATENO"
       "Yuichi Tateno"
     when "authorNari", "nari"
       "Narihiro Nakamura"

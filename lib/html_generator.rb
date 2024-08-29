@@ -1,5 +1,6 @@
 require 'erb'
 require 'uri'
+require 'fileutils'
 
 class HtmlGenerator
   def initialize(speakers, years)

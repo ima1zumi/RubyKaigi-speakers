@@ -1,19 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    nokogiri (1.16.0-aarch64-linux)
+    mini_portile2 (2.8.7)
+    nokogiri (1.16.7)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.16.0-arm-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.0-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.16.0-x86-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.0-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.16.0-x86_64-linux)
-      racc (~> 1.4)
-    racc (1.7.3)
+    racc (1.8.1)
 
 PLATFORMS
   aarch64-linux

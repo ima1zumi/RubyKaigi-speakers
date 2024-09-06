@@ -376,9 +376,11 @@ class Speaker
         schedule_per_day['events'].filter_map { it['talks']&.values }.flatten.each do |talk_id|
           url = "/#{year}/presentations/#{talk_id}.html#{"#day#{day}" if year.to_i >= 2022}"
           speaker_id_to_speaker_ids[talk_id].each do |speaker_id|
-            name = SpeakerNormalizer.unify(speaker_id_to_name[speaker_id])
-            title = talk_id_to_title[talk_id]
-            add_speakers(talks, year, name, speaker_id, title, url)
+            if (name = speaker_id_to_name[speaker_id])
+              name = SpeakerNormalizer.unify(name)
+              title = talk_id_to_title[talk_id]
+              add_speakers(talks, year, name, speaker_id, title, url)
+            end
           end
         end
       end

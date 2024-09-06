@@ -2,16 +2,20 @@ require 'open-uri'
 require 'fileutils'
 
 class Downloader
+  def self.yamls_for(year)
+    ["https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/#{year}/data/speakers.yml", "https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/#{year}/data/presentations.yml", "https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/#{year}/data/schedule.yml"]
+  end
+
   YEARS = {
-    '2024' => ['https://rubykaigi.org/2024/schedule/index.html'],
-    '2023' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2023/schedule/index.html'],
-    '2022' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2022/schedule/index.html'],
-    '2021-takeout' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2021-takeout/schedule/index.html'],
+    '2024' => ['https://rubykaigi.org/2024/data/speakers.yml', 'https://rubykaigi.org/2024/data/presentations.yml', 'https://rubykaigi.org/2024/data/schedule.yml'],
+    '2023' => yamls_for(2023),
+    '2022' => yamls_for(2022),
+    '2021-takeout' => yamls_for('2021-takeout'),
     '2020-takeout' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2020-takeout/schedule/index.html'],
     '2019' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2019/schedule/index.html'],
     '2018' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2018/schedule/index.html'],
     '2017' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2017/schedule/index.html'],
-    '2016' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2016/schedule/index.html'],
+    '2016' => yamls_for(2016),
     '2015' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2015/schedule/index.html'],
     '2014' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2014/schedule/index.html'],
     '2013' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2013/schedule/index.html'],
@@ -42,8 +46,12 @@ class Downloader
   end
 
   def self.extract_filename(uri)
-    filename = uri.match(/(\d{4}-takeout|\d{4})\/(.*html)/)[2]
-    filename.gsub('/', '_')
+    if uri.end_with?('.yml')
+      File.basename(uri)
+    else
+      filename = uri.match(/(\d{4}-takeout|\d{4})\/(.*html)/)[2]
+      filename.gsub('/', '_')
+    end
   end
 end
 

@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'yaml'
 require_relative 'speaker_normalizer'
 
 class Speaker
@@ -360,39 +361,70 @@ class Speaker
     talks
   end
 
+  def get_speakers_from_yaml(year)
+    speakers_yml = YAML.load_file(File.expand_path("schedule/#{year}/speakers.yml"))
+    speaker_id_to_name = speakers_yml.values.inject(:merge)
+    speaker_id_to_name.each {|k, v| speaker_id_to_name[k] = v['name'] }
+
+    presentations_yml = YAML.load_file(File.expand_path("schedule/#{year}/presentations.yml"))
+    talk_id_to_title = presentations_yml.map { [it[0], it[1]['title']] }.to_h
+    speaker_id_to_speaker_ids = presentations_yml.map {|y| [y[0], y[1]['speakers'].map { it.values.last }] }.to_h
+
+    Hash.new { |h, k| h[k] = {} }.tap do |talks|
+      schedule_yml = YAML.load_file(File.expand_path("schedule/#{year}/schedule.yml"))
+      schedule_yml.each_value.with_index(1) do |schedule_per_day, day|
+        schedule_per_day['events'].filter_map { it['talks']&.values }.flatten.each do |talk_id|
+          url = "/#{year}/presentations/#{talk_id}.html#{"#day#{day}" if year.to_i >= 2022}"
+          speaker_id_to_speaker_ids[talk_id].each do |speaker_id|
+            if (name = speaker_id_to_name[speaker_id])
+              name = SpeakerNormalizer.unify(name)
+              title = talk_id_to_title[talk_id]
+              add_speakers(talks, year, name, speaker_id, title, url)
+            end
+          end
+        end
+      end
+    end
+  end
+
   def get_all_speakers
     @years.each do |year|
       files = Dir.glob("schedule/#{year}/*")
       talks = {}
 
-      talks = case year
-              when '2024', '2023', '2022'
-                get_speakers_since_2022(year, files)
-              when '2021-takeout'
-                get_speakers_in_2021_takeout(year, files)
-              when '2020-takeout', '2019', '2018', '2017'
-                get_speakers_2017_to_2020(year, files)
-              when '2016', '2015'
-                get_speakers_2015_to_2016(year, files)
-              when '2014'
-                get_speakers_in_2014(year, files)
-              when '2013'
-                get_speakers_in_2013(year, files)
-              when '2011'
-                get_speakers_in_2011(year, files)
-              when '2010'
-                get_speakers_in_2010(year, files)
-              when '2009'
-                get_speakers_in_2009(year, files)
-              when '2008'
-                get_speakers_in_2008(year, files)
-              when '2007'
-                get_speakers_in_2007(year, files)
-              when '2006'
-                get_speakers_in_2006(year, files)
-              else
-                {}
-              end
+      talks =
+        if File.exist?(File.expand_path("schedule/#{year}/speakers.yml"))
+          get_speakers_from_yaml(year)
+        else
+          case year
+          when '2024', '2023', '2022'
+            get_speakers_since_2022(year, files)
+          when '2021-takeout'
+            get_speakers_in_2021_takeout(year, files)
+          when '2020-takeout', '2019', '2018', '2017'
+            get_speakers_2017_to_2020(year, files)
+          when '2016', '2015'
+            get_speakers_2015_to_2016(year, files)
+          when '2014'
+            get_speakers_in_2014(year, files)
+          when '2013'
+            get_speakers_in_2013(year, files)
+          when '2011'
+            get_speakers_in_2011(year, files)
+          when '2010'
+            get_speakers_in_2010(year, files)
+          when '2009'
+            get_speakers_in_2009(year, files)
+          when '2008'
+            get_speakers_in_2008(year, files)
+          when '2007'
+            get_speakers_in_2007(year, files)
+          when '2006'
+            get_speakers_in_2006(year, files)
+          else
+            {}
+          end
+        end
 
       @speakers = @speakers.merge(talks) { |_, old, new| old.merge(new) }
     end

@@ -367,8 +367,8 @@ class Speaker
     speaker_id_to_name.each {|k, v| speaker_id_to_name[k] = v['name'] }
 
     presentations_yml = YAML.load_file(File.expand_path("schedule/#{year}/presentations.yml"))
-    talk_id_to_title = presentations_yml.map { [it[0], it[1]['title']] }.to_h
-    speaker_id_to_speaker_ids = presentations_yml.map {|y| [y[0], y[1]['speakers'].map { it.values.last }] }.to_h
+    talk_id_to_title = presentations_yml.filter_map {|k, v| [k, v['title']] if v.is_a? Hash }.to_h
+    speaker_id_to_speaker_ids = presentations_yml.filter_map {|k, v| [k, v['speakers'].map { it.values.last }] if v.is_a? Hash }.to_h
 
     Hash.new { |h, k| h[k] = {} }.tap do |talks|
       schedule_yml = YAML.load_file(File.expand_path("schedule/#{year}/schedule.yml"))

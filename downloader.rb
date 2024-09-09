@@ -11,7 +11,7 @@ class Downloader
     '2023' => yamls_for(2023),
     '2022' => yamls_for(2022),
     '2021-takeout' => yamls_for('2021-takeout'),
-    '2020-takeout' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2020-takeout/schedule/index.html'],
+    '2020-takeout' => yamls_for('2020-takeout'),
     '2019' => yamls_for(2019),
     '2018' => yamls_for(2018),
     '2017' => yamls_for(2017),

@@ -375,7 +375,9 @@ class Speaker
       schedule_yml.each_value.with_index(1) do |schedule_per_day, day|
         schedule_per_day['events'].filter_map { it['talks']&.values }.flatten.each do |talk_id|
           url =
-            if year == '2019'
+            if year == '2018'
+              "/#{year}/presentations/#{talk_id}.html##{[nil, 'may31', 'jun01', 'jun02'][day]}"
+            elsif year == '2019'
               "/#{year}/presentations/#{talk_id}.html#apr#{day + 17}"
             elsif year.to_i >= 2022
               "/#{year}/presentations/#{talk_id}.html#day#{day}"

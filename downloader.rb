@@ -12,7 +12,7 @@ class Downloader
     '2022' => yamls_for(2022),
     '2021-takeout' => yamls_for('2021-takeout'),
     '2020-takeout' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2020-takeout/schedule/index.html'],
-    '2019' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2019/schedule/index.html'],
+    '2019' => yamls_for(2019),
     '2018' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2018/schedule/index.html'],
     '2017' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2017/schedule/index.html'],
     '2016' => yamls_for(2016),

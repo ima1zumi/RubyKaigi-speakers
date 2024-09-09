@@ -379,6 +379,8 @@ class Speaker
               "/#{year}/presentations/#{talk_id}.html##{[nil, 'may31', 'jun01', 'jun02'][day]}"
             elsif year == '2019'
               "/#{year}/presentations/#{talk_id}.html#apr#{day + 17}"
+            elsif year == '2020-takeout'
+              "/#{year}/presentations/#{talk_id}.html#sep0#{day + 3}"
             elsif year.to_i >= 2022
               "/#{year}/presentations/#{talk_id}.html#day#{day}"
             else

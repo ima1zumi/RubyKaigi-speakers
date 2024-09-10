@@ -374,6 +374,7 @@ class Speaker
       schedule_yml = YAML.load_file(File.expand_path("schedule/#{year}/schedule.yml"))
       schedule_yml.each_value.with_index(1) do |schedule_per_day, day|
         schedule_per_day['events'].filter_map { it['talks']&.values }.flatten.each do |talk_id|
+          title = talk_id_to_title[talk_id]
           url =
             if year == '2018'
               "/#{year}/presentations/#{talk_id}.html##{[nil, 'may31', 'jun01', 'jun02'][day]}"
@@ -390,7 +391,6 @@ class Speaker
           speaker_id_to_speaker_ids[talk_id].each do |speaker_id|
             if (name = speaker_id_to_name[speaker_id])
               name = SpeakerNormalizer.unify(name)
-              title = talk_id_to_title[talk_id]
               add_speakers(talks, year, name, speaker_id, title, url)
             end
           end

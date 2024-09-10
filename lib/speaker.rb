@@ -368,7 +368,7 @@ class Speaker
 
     presentations_yml = YAML.load_file(File.expand_path("schedule/#{year}/presentations.yml"))
     talk_id_to_title = presentations_yml.filter_map {|k, v| [k, v['title']] if v.is_a? Hash }.to_h
-    speaker_id_to_speaker_ids = presentations_yml.filter_map {|k, v| [k, v['speakers'].map { it.values.last }] if v.is_a? Hash }.to_h
+    speaker_id_to_speaker_ids = presentations_yml.filter_map {|k, v| [k, v['speakers']&.map { it.values.last }] if v.is_a? Hash }.to_h
 
     Hash.new { |h, k| h[k] = {} }.tap do |talks|
       schedule_yml = YAML.load_file(File.expand_path("schedule/#{year}/schedule.yml"))
@@ -388,10 +388,16 @@ class Speaker
               "/#{year}/presentations/#{talk_id}.html"
             end
 
-          speaker_id_to_speaker_ids[talk_id].each do |speaker_id|
-            if (name = speaker_id_to_name[speaker_id])
-              name = SpeakerNormalizer.unify(name)
-              add_speakers(talks, year, name, speaker_id, title, url)
+          if speaker_id_to_speaker_ids[talk_id].nil?
+            name = presentations_yml[talk_id]['speaker']
+            name = SpeakerNormalizer.unify(name)
+            add_speakers(talks, year, name, talk_id, title, url)
+          else
+            speaker_id_to_speaker_ids[talk_id].each do |speaker_id|
+              if (name = speaker_id_to_name[speaker_id])
+                name = SpeakerNormalizer.unify(name)
+                add_speakers(talks, year, name, speaker_id, title, url)
+              end
             end
           end
         end

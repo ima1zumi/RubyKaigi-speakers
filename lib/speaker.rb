@@ -367,15 +367,18 @@ class Speaker
     speaker_id_to_name.each {|k, v| speaker_id_to_name[k] = v['name'] }
 
     presentations_yml = YAML.load_file(File.expand_path("schedule/#{year}/presentations.yml"))
-    talk_id_to_title = presentations_yml.map { [it[0], it[1]['title']] }.to_h
-    speaker_id_to_speaker_ids = presentations_yml.map {|y| [y[0], y[1]['speakers'].map { it.values.last }] }.to_h
+    talk_id_to_title = presentations_yml.filter_map {|k, v| [k, v['title']] if v.is_a? Hash }.to_h
+    speaker_id_to_speaker_ids = presentations_yml.filter_map {|k, v| [k, v['speakers']&.map { it.values.last }] if v.is_a? Hash }.to_h
 
     Hash.new { |h, k| h[k] = {} }.tap do |talks|
       schedule_yml = YAML.load_file(File.expand_path("schedule/#{year}/schedule.yml"))
       schedule_yml.each_value.with_index(1) do |schedule_per_day, day|
         schedule_per_day['events'].filter_map { it['talks']&.values }.flatten.each do |talk_id|
+          title = talk_id_to_title[talk_id]
           url =
-            if year == '2018'
+            if year.to_i == 2015
+              "/#{year}/presentations/#{talk_id}"
+            elsif year == '2018'
               "/#{year}/presentations/#{talk_id}.html##{[nil, 'may31', 'jun01', 'jun02'][day]}"
             elsif year == '2019'
               "/#{year}/presentations/#{talk_id}.html#apr#{day + 17}"
@@ -387,11 +390,16 @@ class Speaker
               "/#{year}/presentations/#{talk_id}.html"
             end
 
-          speaker_id_to_speaker_ids[talk_id].each do |speaker_id|
-            if (name = speaker_id_to_name[speaker_id])
-              name = SpeakerNormalizer.unify(name)
-              title = talk_id_to_title[talk_id]
-              add_speakers(talks, year, name, speaker_id, title, url)
+          if speaker_id_to_speaker_ids[talk_id].nil?
+            name = presentations_yml[talk_id]['speaker']
+            name = SpeakerNormalizer.unify(name)
+            add_speakers(talks, year, name, talk_id, title, url)
+          else
+            speaker_id_to_speaker_ids[talk_id].each do |speaker_id|
+              if (name = speaker_id_to_name[speaker_id])
+                name = SpeakerNormalizer.unify(name)
+                add_speakers(talks, year, name, speaker_id, title, url)
+              end
             end
           end
         end

@@ -16,7 +16,7 @@ class Downloader
     '2018' => yamls_for(2018),
     '2017' => yamls_for(2017),
     '2016' => yamls_for(2016),
-    '2015' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2015/schedule/index.html'],
+    '2015' => yamls_for(2015),
     '2014' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2014/schedule/index.html'],
     '2013' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2013/schedule/index.html'],
     '2011' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2011/en/schedule/grid/index.html'],

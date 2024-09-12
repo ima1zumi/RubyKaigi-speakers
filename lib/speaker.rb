@@ -17,93 +17,6 @@ class Speaker
     }
   end
 
-  def get_speakers_since_2022(year, files)
-    talks = Hash.new { |h, k| h[k] = {} }
-    parsed_html = Nokogiri::HTML.parse(File.open(files.first))
-
-    parsed_html.css('div.m-schedule-item').each do |item|
-      names = item.css('span.m-schedule-item-speaker__name').map { |elm| elm.text }
-      names.each.with_index do |name, i|
-        next if name.strip.empty?
-        name = SpeakerNormalizer.unify(name)
-        ids = item.css('span.m-schedule-item-speaker__id').map { |elm| elm.text }
-        id = ids[i]
-        title = item.css('div.m-schedule-item__title').text.strip
-        if year == '2024'
-          url = '/2024' + item.css("a.m-schedule-item__inner").attribute("href").value.gsub(/\.\./, '')
-        else
-          url = item.css("a.m-schedule-item__inner").attribute("href").value
-        end
-
-        add_speakers(talks, year, name, id, title, url)
-      end
-    end
-
-    talks
-  end
-
-  def get_speakers_in_2021_takeout(year, files)
-    talks = Hash.new { |h, k| h[k] = {} }
-    parsed_html = Nokogiri::HTML.parse(File.open(files.first))
-
-    parsed_html.css('div.p-timetable__track').each do |item|
-      names = item.css('span.p-timetable__speaker-name').map { |elm| elm.text.strip }
-      names.each.with_index do |name, i|
-        name = SpeakerNormalizer.unify(name)
-        ids = item.css('span.p-timetable__speaker-sns').map { |elm| elm.text.strip }
-        id = ids[i]
-        title = item.css('div.p-timetable__talk-title').text.strip
-        url = item.css('a').first&.attribute('href')&.value
-
-        add_speakers(talks, year, name, id, title, url)
-      end
-    end
-
-    talks
-  end
-
-  def get_speakers_2017_to_2020(year, files)
-    talks = Hash.new { |h, k| h[k] = {} }
-    parsed_html = Nokogiri::HTML.parse(File.open(files.first))
-
-    parsed_html.css('a.schedule-item').each do |item|
-      names = item.css('span.schedule-item-speaker__name').map { |elm| elm.text.strip }
-      names.each.with_index do |name, i|
-        next if name.empty?
-        name = SpeakerNormalizer.unify(name)
-        ids = item.css('span.schedule-item-speaker__id').map { |elm| elm.text.strip }
-        id = ids[i]
-        title = item.css('div.schedule-item__title').text.strip
-        url = item.attribute('href').value
-
-        add_speakers(talks, year, name, id, title, url)
-      end
-    end
-
-    talks
-  end
-
-  def get_speakers_2015_to_2016(year, files)
-    talks = Hash.new { |h, k| h[k] = {} }
-    parsed_html = Nokogiri::HTML.parse(File.open(files.first))
-
-    parsed_html.css('td.schedule-table__td').each do |item|
-      names = item.css('span.schedule-table__name').map { |elm| elm.text.strip }
-      names.each.with_index do |name, i|
-        next if name.empty?
-        name = SpeakerNormalizer.unify(name)
-        ids = item.css('span.schedule-table__id').map { |elm| elm.text.strip }
-        id = ids[i]
-        title = item.css('div.schedule-table__title').text.strip
-        url = item.css('a').first.attribute('href').value
-
-        add_speakers(talks, year, name, id, title, url)
-      end
-    end
-
-    talks
-  end
-
   def get_speakers_in_2014(year, files)
     talks = Hash.new { |h, k| h[k] = {} }
     parsed_html = Nokogiri::HTML.parse(File.open(files.first))
@@ -417,14 +330,6 @@ class Speaker
           get_speakers_from_yaml(year)
         else
           case year
-          when '2024', '2023', '2022'
-            get_speakers_since_2022(year, files)
-          when '2021-takeout'
-            get_speakers_in_2021_takeout(year, files)
-          when '2020-takeout', '2019', '2018', '2017'
-            get_speakers_2017_to_2020(year, files)
-          when '2016', '2015'
-            get_speakers_2015_to_2016(year, files)
           when '2014'
             get_speakers_in_2014(year, files)
           when '2013'

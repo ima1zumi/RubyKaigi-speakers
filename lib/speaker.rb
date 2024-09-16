@@ -309,10 +309,9 @@ class Speaker
             add_speakers(talks, year, name, talk_id, title, url)
           else
             speaker_id_to_speaker_ids[talk_id].each do |speaker_id|
-              if (name = speaker_id_to_name[speaker_id])
-                name = SpeakerNormalizer.unify(name)
-                add_speakers(talks, year, name, speaker_id, title, url)
-              end
+              name = speaker_id_to_name[speaker_id]
+              name = SpeakerNormalizer.unify(name)
+              add_speakers(talks, year, name, speaker_id, title, url)
             end
           end
         end

@@ -98,6 +98,8 @@ class SpeakerNormalizer
       "Kay Sawada"
     when "Kevin Deisz"
       "Kevin Newton"
+    when "Ruby committers"
+      "CRuby Committers"
     else
       name
     end

@@ -7,6 +7,7 @@ class Downloader
   end
 
   YEARS = {
+    '2025' => ['https://rubykaigi.org/2025/data/speakers.yml', 'https://rubykaigi.org/2025/data/presentations.yml', 'https://rubykaigi.org/2025/data/schedule.yml'],
     '2024' => ['https://rubykaigi.org/2024/data/speakers.yml', 'https://rubykaigi.org/2024/data/presentations.yml', 'https://rubykaigi.org/2024/data/schedule.yml'],
     '2023' => yamls_for(2023),
     '2022' => yamls_for(2022),

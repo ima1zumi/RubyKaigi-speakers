@@ -6,9 +6,13 @@ class Downloader
     ["https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/#{year}/data/speakers.yml", "https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/#{year}/data/presentations.yml", "https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/#{year}/data/schedule.yml"]
   end
 
+  def self.yamls_from_rubykaigi_org(year)
+    ["https://rubykaigi.org/#{year}/data/speakers.yml", "https://rubykaigi.org/#{year}/data/presentations.yml", "https://rubykaigi.org/#{year}/data/schedule.yml"]
+  end
+
   YEARS = {
-    '2025' => ['https://rubykaigi.org/2025/data/speakers.yml', 'https://rubykaigi.org/2025/data/presentations.yml', 'https://rubykaigi.org/2025/data/schedule.yml'],
-    '2024' => ['https://rubykaigi.org/2024/data/speakers.yml', 'https://rubykaigi.org/2024/data/presentations.yml', 'https://rubykaigi.org/2024/data/schedule.yml'],
+    '2025' => yamls_from_rubykaigi_org(2025),
+    '2024' => yamls_from_rubykaigi_org(2024),
     '2023' => yamls_from_github(2023),
     '2022' => yamls_from_github(2022),
     '2021-takeout' => yamls_from_github('2021-takeout'),

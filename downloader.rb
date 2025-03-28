@@ -2,22 +2,22 @@ require 'open-uri'
 require 'fileutils'
 
 class Downloader
-  def self.yamls_for(year)
+  def self.yamls_from_github(year)
     ["https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/#{year}/data/speakers.yml", "https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/#{year}/data/presentations.yml", "https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/#{year}/data/schedule.yml"]
   end
 
   YEARS = {
     '2025' => ['https://rubykaigi.org/2025/data/speakers.yml', 'https://rubykaigi.org/2025/data/presentations.yml', 'https://rubykaigi.org/2025/data/schedule.yml'],
     '2024' => ['https://rubykaigi.org/2024/data/speakers.yml', 'https://rubykaigi.org/2024/data/presentations.yml', 'https://rubykaigi.org/2024/data/schedule.yml'],
-    '2023' => yamls_for(2023),
-    '2022' => yamls_for(2022),
-    '2021-takeout' => yamls_for('2021-takeout'),
-    '2020-takeout' => yamls_for('2020-takeout'),
-    '2019' => yamls_for(2019),
-    '2018' => yamls_for(2018),
-    '2017' => yamls_for(2017),
-    '2016' => yamls_for(2016),
-    '2015' => yamls_for(2015),
+    '2023' => yamls_from_github(2023),
+    '2022' => yamls_from_github(2022),
+    '2021-takeout' => yamls_from_github('2021-takeout'),
+    '2020-takeout' => yamls_from_github('2020-takeout'),
+    '2019' => yamls_from_github(2019),
+    '2018' => yamls_from_github(2018),
+    '2017' => yamls_from_github(2017),
+    '2016' => yamls_from_github(2016),
+    '2015' => yamls_from_github(2015),
     '2014' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2014/schedule/index.html'],
     '2013' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2013/schedule/index.html'],
     '2011' => ['https://raw.githubusercontent.com/ruby-no-kai/rubykaigi-static/master/2011/en/schedule/grid/index.html'],

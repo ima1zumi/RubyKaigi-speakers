@@ -100,6 +100,8 @@ class SpeakerNormalizer
       "Kevin Newton"
     when "Ruby committers"
       "CRuby Committers"
+    when "Hiroya FUJINAMI"
+      "Hiroya Fujinami"
     else
       name
     end

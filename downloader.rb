@@ -11,6 +11,7 @@ class Downloader
   end
 
   YEARS = {
+    '2026' => yamls_from_rubykaigi_org(2026),
     '2025' => yamls_from_rubykaigi_org(2025),
     '2024' => yamls_from_rubykaigi_org(2024),
     '2023' => yamls_from_github(2023),

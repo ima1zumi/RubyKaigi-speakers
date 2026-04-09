@@ -1,259 +1,350 @@
-<html>
+<!DOCTYPE html>
+<html lang="ja">
   <head>
-  <title>RubyKaigi Speakers</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
-  </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RubyKaigi Speakers</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+      :root {
+        --pico-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
+      }
+      main.container { padding-block: 1.5rem; }
+      h1 { margin-bottom: 0.25rem; }
+      h1 a { color: inherit; text-decoration: none; }
+      .source-link { font-size: 0.9rem; margin-bottom: 1rem; }
+      a { text-decoration: none; }
+      a:hover { text-decoration: underline; }
 
+      #search {
+        padding: 0.4rem 0.6rem 0.4rem 2.5rem;
+        font-size: 0.9rem;
+        margin-bottom: 0;
+        height: auto;
+      }
+      .search-count {
+        color: var(--pico-muted-color);
+        font-size: 0.8rem;
+        display: block;
+        margin-top: 0.3rem;
+        margin-bottom: 0.75rem;
+      }
+
+      figure { overflow-x: auto; margin: 0; }
+      table { width: 100%; }
+      thead th {
+        position: sticky;
+        top: 0;
+        background: var(--pico-background-color);
+        z-index: 1;
+      }
+      .year-badge {
+        color: var(--pico-muted-color);
+        font-size: 0.85em;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .year-badge:hover { text-decoration: underline; }
+
+      /* スマホ: テーブルをカードレイアウトへ変換 */
+      @media (max-width: 640px) {
+        main.container { padding-inline: 1rem; }
+        figure thead { display: none; }
+        figure table,
+        figure tbody,
+        figure tr,
+        figure td {
+          display: block;
+          width: 100%;
+        }
+        figure tr {
+          padding: 0.85rem 0;
+          border-bottom: 1px solid var(--pico-muted-border-color);
+        }
+        figure tr:last-child { border-bottom: none; }
+        figure td {
+          padding: 0.15rem 0;
+          border: none;
+        }
+        figure td.year { margin-bottom: 0.4rem; }
+        figure td.name a { font-weight: 600; }
+      }
+    </style>
+  </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="column">
-          <h1><a href="../index.html">RubyKaigi Speakers</a></h1>
-          <a href="https://github.com/ima1zumi/RubyKaigi-speakers">Source</a>
-          <table class="pure-table pure-table-horizontal">
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>Name</th>
-                <th>Title</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Yukihiro+%22Matz%22+Matsumoto'>Yukihiro "Matz" Matsumoto</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Keynote</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Akio+Tajima'>Akio Tajima</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>How to Write Ruby Extended Library</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Tanaka+Akira'>Tanaka Akira</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>How to Persuade matz</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Kentaro+Goto+%2F+%E3%81%94%E3%81%A8%E3%81%91%E3%82%93'>Kentaro Goto / ごとけん</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>More Ruby in daily business</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Shugo+Maeda'>Shugo Maeda</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>A Study on Rails Syndrome</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Masatoshi+SEKI'>Masatoshi SEKI</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Recollections of erb</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Yugui'>Yugui</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Rails Development with RSpec, a Case Study</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Koichi+Sasada'>Koichi Sasada</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>RubyVM Development, Now and the Future</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Minero+AOKI'>Minero AOKI</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>The Ruby Reference Manual - Current status and its future</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Charles+Nutter'>Charles Nutter</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>JRuby: Ready for Action</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Naoto+Takai'>Naoto Takai</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Real-World Enterprise Ruby</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Hidetoshi+NAGAI'>Hidetoshi NAGAI</a></td>
-                <td><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Improvement of Ruby/Tk: New and Useful Features</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Evan+Phoenix'>Evan Phoenix</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>The Magic of Rubinius</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/NARUSE%2C+Yui'>NARUSE, Yui</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Ruby M17N</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Martin+J.+D%C3%BCrst'>Martin J. Dürst</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Ruby M17N</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Martin+J.+D%C3%BCrst'>Martin J. Dürst</a></td>
-                <td><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>SVuGy: Fun with SVG and Ruby</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Hidehiko+MASUHARA'>Hidehiko MASUHARA</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Teaching *with* Ruby (Not "Teaching Ruby")</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Yuumi+YOSHIDA'>Yuumi YOSHIDA</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Best Practices for Ruby Education</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Shinnya+MATSUDA'>Shinnya MATSUDA</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Explanation for the examination of Ruby Association Certified Ruby Programmer</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Laurent+Sansonetti'>Laurent Sansonetti</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>The future of Ruby in Mac OS X</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Yohei+YAMAMOTO'>Yohei YAMAMOTO</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Ruby on Rails 2.0 from the Perspective of a RESTian</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Koichiro+Ohba'>Koichiro Ohba</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Real-World Enterprise Ruby</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Zev+Blut'>Zev Blut</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Developing and scaling iKnow!</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Takayuki+KYOWA'>Takayuki KYOWA</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Inside Tabelog's Backend</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Yohji+SHIDARA'>Yohji SHIDARA</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Lay Rails on "Galapagos" - Jpmobile: A Rails Plugin for Japanese Mobile Phones</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Alex+Kane'>Alex Kane</a></td>
-                <td><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Using Ruby to Build a Scalable Startup</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Aaron+Patterson'>Aaron Patterson</a></td>
-                <td><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Blurring the Language Barrier</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Tetsuo+NODA'>Tetsuo NODA</a></td>
-                <td><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Two Years in Ruby City Matz'E</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Shunichi+ARAI'>Shunichi ARAI</a></td>
-                <td><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Introducing database library Sequel and DataMapper</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Tatsuhiro+Ujihisa'>Tatsuhiro Ujihisa</a></td>
-                <td><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Agile Web Posting with Ruby</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Kazuaki+MAEDA'>Kazuaki MAEDA</a></td>
-                <td><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Structured Data Representation Using Ruby Syntax</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Shuhei+NOMURA'>Shuhei NOMURA</a></td>
-                <td><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>LuRuju - Ruby meets JUDE</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Tomonori+FUKUTA'>Tomonori FUKUTA</a></td>
-                <td><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Developing Storage Service with Ruby</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Hajime+HOSHI'>Hajime HOSHI</a></td>
-                <td><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Game Developments by Ruby and "Star Ruby"</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Cyross+MAKOTO'>Cyross MAKOTO</a></td>
-                <td><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Let's Create Interactive Gamebook by Ruby!</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/cho45'>cho45</a></td>
-                <td><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Library Design of net-irc gem</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Soutaro+Matsumoto'>Soutaro Matsumoto</a></td>
-                <td><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Typing Ruby Programs</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2008'>2008</a></td>
-                <td><a href='/speakers/Narihiro+Nakamura'>Narihiro Nakamura</a></td>
-                <td><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Let's improve RubyGC</a></td>
-              </tr>
-              
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <main class="container">
+      <hgroup>
+        <h1><a href="/">RubyKaigi Speakers</a></h1>
+        <p class="source-link"><a href="https://github.com/ima1zumi/RubyKaigi-speakers">Source on GitHub</a></p>
+      </hgroup>
+      <input type="search" id="search" placeholder="Search by name, year, or title...">
+      <small class="search-count" id="search-count"></small>
+      <figure>
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Name</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Yukihiro+%22Matz%22+Matsumoto'>Yukihiro "Matz" Matsumoto</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Keynote</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Akio+Tajima'>Akio Tajima</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>How to Write Ruby Extended Library</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Tanaka+Akira'>Tanaka Akira</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>How to Persuade matz</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Kentaro+Goto+%2F+%E3%81%94%E3%81%A8%E3%81%91%E3%82%93'>Kentaro Goto / ごとけん</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>More Ruby in daily business</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Shugo+Maeda'>Shugo Maeda</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>A Study on Rails Syndrome</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Masatoshi+SEKI'>Masatoshi SEKI</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Recollections of erb</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Yugui'>Yugui</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Rails Development with RSpec, a Case Study</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Koichi+Sasada'>Koichi Sasada</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>RubyVM Development, Now and the Future</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Minero+AOKI'>Minero AOKI</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>The Ruby Reference Manual - Current status and its future</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Charles+Nutter'>Charles Nutter</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>JRuby: Ready for Action</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Naoto+Takai'>Naoto Takai</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Real-World Enterprise Ruby</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Hidetoshi+NAGAI'>Hidetoshi NAGAI</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Improvement of Ruby/Tk: New and Useful Features</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Evan+Phoenix'>Evan Phoenix</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>The Magic of Rubinius</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/NARUSE%2C+Yui'>NARUSE, Yui</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Ruby M17N</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Martin+J.+D%C3%BCrst'>Martin J. Dürst</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Ruby M17N</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Martin+J.+D%C3%BCrst'>Martin J. Dürst</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>SVuGy: Fun with SVG and Ruby</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Hidehiko+MASUHARA'>Hidehiko MASUHARA</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Teaching *with* Ruby (Not "Teaching Ruby")</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Yuumi+YOSHIDA'>Yuumi YOSHIDA</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Best Practices for Ruby Education</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Shinnya+MATSUDA'>Shinnya MATSUDA</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Explanation for the examination of Ruby Association Certified Ruby Programmer</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Laurent+Sansonetti'>Laurent Sansonetti</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>The future of Ruby in Mac OS X</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Yohei+YAMAMOTO'>Yohei YAMAMOTO</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Ruby on Rails 2.0 from the Perspective of a RESTian</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Koichiro+Ohba'>Koichiro Ohba</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Real-World Enterprise Ruby</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Zev+Blut'>Zev Blut</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Developing and scaling iKnow!</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Takayuki+KYOWA'>Takayuki KYOWA</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Inside Tabelog's Backend</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Yohji+SHIDARA'>Yohji SHIDARA</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Lay Rails on "Galapagos" - Jpmobile: A Rails Plugin for Japanese Mobile Phones</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Alex+Kane'>Alex Kane</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/MainSession.html' target='_blank'>Using Ruby to Build a Scalable Startup</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Aaron+Patterson'>Aaron Patterson</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Blurring the Language Barrier</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Tetsuo+NODA'>Tetsuo NODA</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Two Years in Ruby City Matz'E</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Shunichi+ARAI'>Shunichi ARAI</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Introducing database library Sequel and DataMapper</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Tatsuhiro+Ujihisa'>Tatsuhiro Ujihisa</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Agile Web Posting with Ruby</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Kazuaki+MAEDA'>Kazuaki MAEDA</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Structured Data Representation Using Ruby Syntax</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Shuhei+NOMURA'>Shuhei NOMURA</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>LuRuju - Ruby meets JUDE</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Tomonori+FUKUTA'>Tomonori FUKUTA</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Developing Storage Service with Ruby</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Hajime+HOSHI'>Hajime HOSHI</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Game Developments by Ruby and "Star Ruby"</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Cyross+MAKOTO'>Cyross MAKOTO</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Let's Create Interactive Gamebook by Ruby!</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/cho45'>cho45</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Library Design of net-irc gem</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Soutaro+Matsumoto'>Soutaro Matsumoto</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Typing Ruby Programs</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2008'>2008</a></td>
+              <td class="name"><a href='/speakers/Narihiro+Nakamura'>Narihiro Nakamura</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2008/SubSession.html' target='_blank'>Let's improve RubyGC</a></td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </figure>
+    </main>
+    <script>
+      const input = document.getElementById('search');
+      const count = document.getElementById('search-count');
+      const rows = document.querySelectorAll('figure tbody tr');
+      const total = rows.length;
+
+      function updateCount(visible) {
+        count.textContent = input.value ? visible + ' / ' + total + ' talks' : total + ' talks';
+      }
+
+      input.addEventListener('input', function () {
+        const terms = this.value.toLowerCase().split(/\s+/).filter(Boolean);
+        let visible = 0;
+        rows.forEach(function (row) {
+          const text = row.textContent.toLowerCase();
+          const match = terms.every(function (t) { return text.includes(t); });
+          row.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+        updateCount(visible);
+      });
+
+      updateCount(total);
+    </script>
   </body>
 </html>

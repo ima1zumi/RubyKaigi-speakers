@@ -1,193 +1,284 @@
-<html>
+<!DOCTYPE html>
+<html lang="ja">
   <head>
-  <title>RubyKaigi Speakers</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
-  </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RubyKaigi Speakers</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+      :root {
+        --pico-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
+      }
+      main.container { padding-block: 1.5rem; }
+      h1 { margin-bottom: 0.25rem; }
+      h1 a { color: inherit; text-decoration: none; }
+      .source-link { font-size: 0.9rem; margin-bottom: 1rem; }
+      a { text-decoration: none; }
+      a:hover { text-decoration: underline; }
 
+      #search {
+        padding: 0.4rem 0.6rem 0.4rem 2.5rem;
+        font-size: 0.9rem;
+        margin-bottom: 0;
+        height: auto;
+      }
+      .search-count {
+        color: var(--pico-muted-color);
+        font-size: 0.8rem;
+        display: block;
+        margin-top: 0.3rem;
+        margin-bottom: 0.75rem;
+      }
+
+      figure { overflow-x: auto; margin: 0; }
+      table { width: 100%; }
+      thead th {
+        position: sticky;
+        top: 0;
+        background: var(--pico-background-color);
+        z-index: 1;
+      }
+      .year-badge {
+        color: var(--pico-muted-color);
+        font-size: 0.85em;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .year-badge:hover { text-decoration: underline; }
+
+      /* スマホ: テーブルをカードレイアウトへ変換 */
+      @media (max-width: 640px) {
+        main.container { padding-inline: 1rem; }
+        figure thead { display: none; }
+        figure table,
+        figure tbody,
+        figure tr,
+        figure td {
+          display: block;
+          width: 100%;
+        }
+        figure tr {
+          padding: 0.85rem 0;
+          border-bottom: 1px solid var(--pico-muted-border-color);
+        }
+        figure tr:last-child { border-bottom: none; }
+        figure td {
+          padding: 0.15rem 0;
+          border: none;
+        }
+        figure td.year { margin-bottom: 0.4rem; }
+        figure td.name a { font-weight: 600; }
+      }
+    </style>
+  </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="column">
-          <h1><a href="../index.html">RubyKaigi Speakers</a></h1>
-          <a href="https://github.com/ima1zumi/RubyKaigi-speakers">Source</a>
-          <table class="pure-table pure-table-horizontal">
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>Name</th>
-                <th>Title</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/Masayoshi+Takahashi'>Masayoshi Takahashi</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>Ruby の歴史</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/%E4%BA%95%E4%B8%8A%E3%80%80%E6%B5%A9'>井上　浩</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>NaCl のオープンソース戦略〜そして今後の Ruby 戦略に関して〜</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/Yukihiro+%22Matz%22+Matsumoto'>Yukihiro "Matz" Matsumoto</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>State of the Dominion</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/Akio+Tajima'>Akio Tajima</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>Rubyize による言語境界の越え方</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/Tanaka+Akira'>Tanaka Akira</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>使いやすいライブラリ API デザイン</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/Keiju+Ishitsuka'>Keiju Ishitsuka</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>Ruby プログラミング + モデリングでより楽しくなろう - その1</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/%E3%81%AA%E3%81%B2'>なひ</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>セキュアアプリケーションプログラミング</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/Kentaro+Goto+%2F+%E3%81%94%E3%81%A8%E3%81%91%E3%82%93'>Kentaro Goto / ごとけん</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>仕事で使うRuby</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/Shugo+Maeda'>Shugo Maeda</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>Railsによるメタプログラミング入門</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/%E3%81%9F%E3%81%A0%E3%81%9F%E3%81%A0%E3%81%97'>ただただし</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Ruby anywhere 〜Ruby普及のためにアプリケーションができること</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/Masatoshi+SEKI'>Masatoshi SEKI</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>dRubyをもう一度</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/%E4%B8%AD%E5%B3%B6+%E6%8B%93'>中島 拓</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Amrita2 の紹介</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/Yuichi+Tateno'>Yuichi Tateno</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Perl の会社で使われる Ruby の利用法とは!?</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/moriq+%28%E5%90%89%E7%94%B0%E5%92%8C%E5%BC%98%29'>moriq (吉田和弘)</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Rails による Web アプリケーション開発・保守事例の紹介</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/%E8%A5%BF+%E5%92%8C%E5%89%87'>西 和則</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>ActiveRecord を詳しく</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/David+Heinemeier+Hansson'>David Heinemeier Hansson</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>One controller, many ins, many outs</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/%E7%89%87%E5%B1%B1%E4%BF%8A%E6%98%8E'>片山俊明</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>BioRuby</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/Fujimoto+Hisa'>Fujimoto Hisa</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>RubyCocoaで作るMacアプリケーション</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/%E7%AB%8B%E5%B7%9D%E5%AF%9F%E7%90%86'>立川察理</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>RubyによるHL7プロトコルライブラリ</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/cuzic'>cuzic</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Ruby On Rails の Relative Path プラグイン</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/%E5%A4%A7%E8%A5%BF%E6%AD%A3%E5%A4%AA'>大西正太</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Rails製CMS「Rubricks」</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/%E3%81%88%E3%81%A8%E3%83%BC'>えとー</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>わりと簡単rubyアプリをDebianへ</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/Sutou+Kouhei'>Sutou Kouhei</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Ruby on 風博士</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/Yugui'>Yugui</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>なぜブロックは素晴らしいか -- RubyがLispでない理由</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/Ippei+Obayashi'>Ippei Obayashi</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Ruby Reference Seeker for Emacsen</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/%E5%B8%82%E5%B7%9D+%E5%AE%99'>市川 宙</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>人工無能 ロイディ</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2006'>2006</a></td>
-                <td><a href='/speakers/Kouichirou+ETO'>Kouichirou ETO</a></td>
-                <td><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>インターネット物理モデル: または私はいかにして悩むのをやめ転がる玉を愛するようになったか</a></td>
-              </tr>
-              
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <main class="container">
+      <hgroup>
+        <h1><a href="/">RubyKaigi Speakers</a></h1>
+        <p class="source-link"><a href="https://github.com/ima1zumi/RubyKaigi-speakers">Source on GitHub</a></p>
+      </hgroup>
+      <input type="search" id="search" placeholder="Search by name, year, or title...">
+      <small class="search-count" id="search-count"></small>
+      <figure>
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Name</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/Masayoshi+Takahashi'>Masayoshi Takahashi</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>Ruby の歴史</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/%E4%BA%95%E4%B8%8A%E3%80%80%E6%B5%A9'>井上　浩</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>NaCl のオープンソース戦略〜そして今後の Ruby 戦略に関して〜</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/Yukihiro+%22Matz%22+Matsumoto'>Yukihiro "Matz" Matsumoto</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>State of the Dominion</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/Akio+Tajima'>Akio Tajima</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>Rubyize による言語境界の越え方</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/Tanaka+Akira'>Tanaka Akira</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>使いやすいライブラリ API デザイン</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/Keiju+Ishitsuka'>Keiju Ishitsuka</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>Ruby プログラミング + モデリングでより楽しくなろう - その1</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/%E3%81%AA%E3%81%B2'>なひ</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>セキュアアプリケーションプログラミング</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/Kentaro+Goto+%2F+%E3%81%94%E3%81%A8%E3%81%91%E3%82%93'>Kentaro Goto / ごとけん</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>仕事で使うRuby</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/Shugo+Maeda'>Shugo Maeda</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0610.html' target='_blank'>Railsによるメタプログラミング入門</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/%E3%81%9F%E3%81%A0%E3%81%9F%E3%81%A0%E3%81%97'>ただただし</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Ruby anywhere 〜Ruby普及のためにアプリケーションができること</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/Masatoshi+SEKI'>Masatoshi SEKI</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>dRubyをもう一度</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/%E4%B8%AD%E5%B3%B6+%E6%8B%93'>中島 拓</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Amrita2 の紹介</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/Yuichi+Tateno'>Yuichi Tateno</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Perl の会社で使われる Ruby の利用法とは!?</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/moriq+%28%E5%90%89%E7%94%B0%E5%92%8C%E5%BC%98%29'>moriq (吉田和弘)</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Rails による Web アプリケーション開発・保守事例の紹介</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/%E8%A5%BF+%E5%92%8C%E5%89%87'>西 和則</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>ActiveRecord を詳しく</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/David+Heinemeier+Hansson'>David Heinemeier Hansson</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>One controller, many ins, many outs</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/%E7%89%87%E5%B1%B1%E4%BF%8A%E6%98%8E'>片山俊明</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>BioRuby</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/Fujimoto+Hisa'>Fujimoto Hisa</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>RubyCocoaで作るMacアプリケーション</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/%E7%AB%8B%E5%B7%9D%E5%AF%9F%E7%90%86'>立川察理</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>RubyによるHL7プロトコルライブラリ</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/cuzic'>cuzic</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Ruby On Rails の Relative Path プラグイン</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/%E5%A4%A7%E8%A5%BF%E6%AD%A3%E5%A4%AA'>大西正太</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Rails製CMS「Rubricks」</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/%E3%81%88%E3%81%A8%E3%83%BC'>えとー</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>わりと簡単rubyアプリをDebianへ</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/Sutou+Kouhei'>Sutou Kouhei</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Ruby on 風博士</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/Yugui'>Yugui</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>なぜブロックは素晴らしいか -- RubyがLispでない理由</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/Ippei+Obayashi'>Ippei Obayashi</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>Ruby Reference Seeker for Emacsen</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/%E5%B8%82%E5%B7%9D+%E5%AE%99'>市川 宙</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>人工無能 ロイディ</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2006'>2006</a></td>
+              <td class="name"><a href='/speakers/Kouichirou+ETO'>Kouichirou ETO</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2006/program0611.html' target='_blank'>インターネット物理モデル: または私はいかにして悩むのをやめ転がる玉を愛するようになったか</a></td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </figure>
+    </main>
+    <script>
+      const input = document.getElementById('search');
+      const count = document.getElementById('search-count');
+      const rows = document.querySelectorAll('figure tbody tr');
+      const total = rows.length;
+
+      function updateCount(visible) {
+        count.textContent = input.value ? visible + ' / ' + total + ' talks' : total + ' talks';
+      }
+
+      input.addEventListener('input', function () {
+        const terms = this.value.toLowerCase().split(/\s+/).filter(Boolean);
+        let visible = 0;
+        rows.forEach(function (row) {
+          const text = row.textContent.toLowerCase();
+          const match = terms.every(function (t) { return text.includes(t); });
+          row.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+        updateCount(visible);
+      });
+
+      updateCount(total);
+    </script>
   </body>
 </html>

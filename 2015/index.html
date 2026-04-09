@@ -1,307 +1,398 @@
-<html>
+<!DOCTYPE html>
+<html lang="ja">
   <head>
-  <title>RubyKaigi Speakers</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
-  </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RubyKaigi Speakers</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+      :root {
+        --pico-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
+      }
+      main.container { padding-block: 1.5rem; }
+      h1 { margin-bottom: 0.25rem; }
+      h1 a { color: inherit; text-decoration: none; }
+      .source-link { font-size: 0.9rem; margin-bottom: 1rem; }
+      a { text-decoration: none; }
+      a:hover { text-decoration: underline; }
 
+      #search {
+        padding: 0.4rem 0.6rem 0.4rem 2.5rem;
+        font-size: 0.9rem;
+        margin-bottom: 0;
+        height: auto;
+      }
+      .search-count {
+        color: var(--pico-muted-color);
+        font-size: 0.8rem;
+        display: block;
+        margin-top: 0.3rem;
+        margin-bottom: 0.75rem;
+      }
+
+      figure { overflow-x: auto; margin: 0; }
+      table { width: 100%; }
+      thead th {
+        position: sticky;
+        top: 0;
+        background: var(--pico-background-color);
+        z-index: 1;
+      }
+      .year-badge {
+        color: var(--pico-muted-color);
+        font-size: 0.85em;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .year-badge:hover { text-decoration: underline; }
+
+      /* スマホ: テーブルをカードレイアウトへ変換 */
+      @media (max-width: 640px) {
+        main.container { padding-inline: 1rem; }
+        figure thead { display: none; }
+        figure table,
+        figure tbody,
+        figure tr,
+        figure td {
+          display: block;
+          width: 100%;
+        }
+        figure tr {
+          padding: 0.85rem 0;
+          border-bottom: 1px solid var(--pico-muted-border-color);
+        }
+        figure tr:last-child { border-bottom: none; }
+        figure td {
+          padding: 0.15rem 0;
+          border: none;
+        }
+        figure td.year { margin-bottom: 0.4rem; }
+        figure td.name a { font-weight: 600; }
+      }
+    </style>
+  </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="column">
-          <h1><a href="../index.html">RubyKaigi Speakers</a></h1>
-          <a href="https://github.com/ima1zumi/RubyKaigi-speakers">Source</a>
-          <table class="pure-table pure-table-horizontal">
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>Name</th>
-                <th>Title</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Yukihiro+%22Matz%22+Matsumoto'>Yukihiro "Matz" Matsumoto</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/matz' target='_blank'>Keynote</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Keiju+Ishitsuka'>Keiju Ishitsuka</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/keiju' target='_blank'>Usage and implementation of Reish which is an Unix shell for Rubyist</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Masatoshi+SEKI'>Masatoshi SEKI</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/seki' target='_blank'>Actor, Thread and me</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Sutou+Kouhei'>Sutou Kouhei</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/kou' target='_blank'>The history of testing framework in Ruby</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Ippei+Obayashi'>Ippei Obayashi</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/ohai' target='_blank'>Ruby for one day game programming camp for beginners</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Koichi+Sasada'>Koichi Sasada</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/ko1' target='_blank'>Compiling Ruby scripts</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Charles+Nutter'>Charles Nutter</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/headius_enebo' target='_blank'>Upcoming Improvements to JRuby 9000</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Thomas+E+Enebo'>Thomas E Enebo</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/headius_enebo' target='_blank'>Upcoming Improvements to JRuby 9000</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Yutaka+HARA'>Yutaka HARA</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/yhara' target='_blank'>Let's make a functional language!</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Evan+Phoenix'>Evan Phoenix</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/evanphx' target='_blank'>Keynote</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Laurent+Sansonetti'>Laurent Sansonetti</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/lrz' target='_blank'>The future of Ruby is in motion!</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Aaron+Patterson'>Aaron Patterson</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/tenderlove' target='_blank'>Request and Response</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Yehuda+Katz'>Yehuda Katz</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/wycats_chancancode' target='_blank'>Turbo Rails with Rust</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Hiroshi+SHIBATA'>Hiroshi SHIBATA</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/hsbt' target='_blank'>Pragmatic Testing of Ruby Core</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Paolo+Perrotta'>Paolo Perrotta</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/nusco' target='_blank'>Refinements - the Worst Feature You Ever Loved</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Mayumi+EMORI'>Mayumi EMORI</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/emorima' target='_blank'>Discussion on Thread between version 1.8.6 and 2.2.3</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/KOSAKI+Motohiro'>KOSAKI Motohiro</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/kosaki' target='_blank'>Keynote</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Terence+Lee'>Terence Lee</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/hone02_zzak' target='_blank'>Building CLI Apps for Everyone</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Satoshi+Tagomori'>Satoshi Tagomori</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/tagomoris' target='_blank'>Data Analytics Service Company and Its Ruby Usage</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/mame+%26+the+judges'>mame & the judges</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/trick' target='_blank'>TRICK 2015: The second Transcendental Ruby Imbroglio Contest for RubyKaigi</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/zzak'>zzak</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/hone02_zzak' target='_blank'>Building CLI Apps for Everyone</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Josh+Kalderimis'>Josh Kalderimis</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/joshk' target='_blank'>Beyond Saas: Building for Enterprise</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Matthew+Gaudet'>Matthew Gaudet</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/MattStudies' target='_blank'>Experiments in sharing Java VM technology with CRuby</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Yuki+Nishijima'>Yuki Nishijima</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/yuki24' target='_blank'>Saving people from typos</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Shota+Nakano'>Shota Nakano</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/shotantan' target='_blank'>mruby on the minimal embedded resource</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Hsing-Hui+Hsu'>Hsing-Hui Hsu</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/SoManyHs' target='_blank'>Time flies like an arrow; Fruit flies like a banana: Parsers for Great Good</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Kevin+Menard'>Kevin Menard</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/nirvdrum' target='_blank'>Fast Metaprogramming with Truffle</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Emily+Stolfo'>Emily Stolfo</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/estolfo' target='_blank'>DIY (Do-it-Yourself) Testing</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Kohei+Suzuki'>Kohei Suzuki</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/eagletmt_k0kubun' target='_blank'>High Performance Template Engine: Guide to optimize your Ruby code</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Takashi+Kokubun'>Takashi Kokubun</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/eagletmt_k0kubun' target='_blank'>High Performance Template Engine: Guide to optimize your Ruby code</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Will+Leinweber'>Will Leinweber</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/leinweber' target='_blank'>Introducing the Crystal Programming Language</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Julian+Cheal'>Julian Cheal</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/juliancheal' target='_blank'>Charming Robots</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Godfrey+Chan'>Godfrey Chan</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/wycats_chancancode' target='_blank'>Turbo Rails with Rust</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Naohisa+Goto'>Naohisa Goto</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/ngoto' target='_blank'>Running Ruby on Solaris</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Fernando+Hamasaki+de+Amorim'>Fernando Hamasaki de Amorim</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/prodis' target='_blank'>The worst Ruby codes I've seen in my life</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Masaki+Matsushita'>Masaki Matsushita</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/mmasaki' target='_blank'>Ruby meets Go</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Franck+Verrot'>Franck Verrot</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/franckverrot' target='_blank'>Ruby and PostgreSQL, a love story</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Masahiro+Nagano'>Masahiro Nagano</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/kazeburo' target='_blank'>Rhebok, High Performance Rack Handler</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Yurie+Yamane'>Yurie Yamane</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/yurie' target='_blank'>making robot with mruby</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/LT+speakers+%28JA+-%3E+EN+interpreters+won%27t+be+available%29'>LT speakers (JA -> EN interpreters won't be available)</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/lt' target='_blank'>Lightning Talks</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/CRuby+Committers'>CRuby Committers</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/committers' target='_blank'>Ruby Committers vs the World</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Robert+Young'>Robert Young</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/youngrw_CraigLehmann' target='_blank'>It's dangerous to GC alone. Take this!</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Craig+Lehmann'>Craig Lehmann</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/youngrw_CraigLehmann' target='_blank'>It's dangerous to GC alone. Take this!</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Yoh+Osaki'>Yoh Osaki</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/youchan' target='_blank'>Writing web application in Ruby</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Sadayuki+Furuhashi'>Sadayuki Furuhashi</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/frsyuki' target='_blank'>Plugin-based software design with Ruby and RubyGems</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2015'>2015</a></td>
-                <td><a href='/speakers/Christophe+Philemotte'>Christophe Philemotte</a></td>
-                <td><a href='https://rubykaigi.org/2015/presentations/toch' target='_blank'>Prepare yourself against Zombie epidemic</a></td>
-              </tr>
-              
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <main class="container">
+      <hgroup>
+        <h1><a href="/">RubyKaigi Speakers</a></h1>
+        <p class="source-link"><a href="https://github.com/ima1zumi/RubyKaigi-speakers">Source on GitHub</a></p>
+      </hgroup>
+      <input type="search" id="search" placeholder="Search by name, year, or title...">
+      <small class="search-count" id="search-count"></small>
+      <figure>
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Name</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Yukihiro+%22Matz%22+Matsumoto'>Yukihiro "Matz" Matsumoto</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/matz' target='_blank'>Keynote</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Keiju+Ishitsuka'>Keiju Ishitsuka</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/keiju' target='_blank'>Usage and implementation of Reish which is an Unix shell for Rubyist</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Masatoshi+SEKI'>Masatoshi SEKI</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/seki' target='_blank'>Actor, Thread and me</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Sutou+Kouhei'>Sutou Kouhei</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/kou' target='_blank'>The history of testing framework in Ruby</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Ippei+Obayashi'>Ippei Obayashi</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/ohai' target='_blank'>Ruby for one day game programming camp for beginners</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Koichi+Sasada'>Koichi Sasada</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/ko1' target='_blank'>Compiling Ruby scripts</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Charles+Nutter'>Charles Nutter</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/headius_enebo' target='_blank'>Upcoming Improvements to JRuby 9000</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Thomas+E+Enebo'>Thomas E Enebo</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/headius_enebo' target='_blank'>Upcoming Improvements to JRuby 9000</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Yutaka+HARA'>Yutaka HARA</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/yhara' target='_blank'>Let's make a functional language!</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Evan+Phoenix'>Evan Phoenix</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/evanphx' target='_blank'>Keynote</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Laurent+Sansonetti'>Laurent Sansonetti</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/lrz' target='_blank'>The future of Ruby is in motion!</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Aaron+Patterson'>Aaron Patterson</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/tenderlove' target='_blank'>Request and Response</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Yehuda+Katz'>Yehuda Katz</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/wycats_chancancode' target='_blank'>Turbo Rails with Rust</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Hiroshi+SHIBATA'>Hiroshi SHIBATA</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/hsbt' target='_blank'>Pragmatic Testing of Ruby Core</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Paolo+Perrotta'>Paolo Perrotta</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/nusco' target='_blank'>Refinements - the Worst Feature You Ever Loved</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Mayumi+EMORI'>Mayumi EMORI</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/emorima' target='_blank'>Discussion on Thread between version 1.8.6 and 2.2.3</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/KOSAKI+Motohiro'>KOSAKI Motohiro</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/kosaki' target='_blank'>Keynote</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Terence+Lee'>Terence Lee</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/hone02_zzak' target='_blank'>Building CLI Apps for Everyone</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Satoshi+Tagomori'>Satoshi Tagomori</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/tagomoris' target='_blank'>Data Analytics Service Company and Its Ruby Usage</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/mame+%26+the+judges'>mame & the judges</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/trick' target='_blank'>TRICK 2015: The second Transcendental Ruby Imbroglio Contest for RubyKaigi</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/zzak'>zzak</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/hone02_zzak' target='_blank'>Building CLI Apps for Everyone</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Josh+Kalderimis'>Josh Kalderimis</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/joshk' target='_blank'>Beyond Saas: Building for Enterprise</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Matthew+Gaudet'>Matthew Gaudet</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/MattStudies' target='_blank'>Experiments in sharing Java VM technology with CRuby</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Yuki+Nishijima'>Yuki Nishijima</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/yuki24' target='_blank'>Saving people from typos</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Shota+Nakano'>Shota Nakano</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/shotantan' target='_blank'>mruby on the minimal embedded resource</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Hsing-Hui+Hsu'>Hsing-Hui Hsu</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/SoManyHs' target='_blank'>Time flies like an arrow; Fruit flies like a banana: Parsers for Great Good</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Kevin+Menard'>Kevin Menard</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/nirvdrum' target='_blank'>Fast Metaprogramming with Truffle</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Emily+Stolfo'>Emily Stolfo</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/estolfo' target='_blank'>DIY (Do-it-Yourself) Testing</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Kohei+Suzuki'>Kohei Suzuki</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/eagletmt_k0kubun' target='_blank'>High Performance Template Engine: Guide to optimize your Ruby code</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Takashi+Kokubun'>Takashi Kokubun</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/eagletmt_k0kubun' target='_blank'>High Performance Template Engine: Guide to optimize your Ruby code</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Will+Leinweber'>Will Leinweber</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/leinweber' target='_blank'>Introducing the Crystal Programming Language</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Julian+Cheal'>Julian Cheal</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/juliancheal' target='_blank'>Charming Robots</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Godfrey+Chan'>Godfrey Chan</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/wycats_chancancode' target='_blank'>Turbo Rails with Rust</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Naohisa+Goto'>Naohisa Goto</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/ngoto' target='_blank'>Running Ruby on Solaris</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Fernando+Hamasaki+de+Amorim'>Fernando Hamasaki de Amorim</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/prodis' target='_blank'>The worst Ruby codes I've seen in my life</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Masaki+Matsushita'>Masaki Matsushita</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/mmasaki' target='_blank'>Ruby meets Go</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Franck+Verrot'>Franck Verrot</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/franckverrot' target='_blank'>Ruby and PostgreSQL, a love story</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Masahiro+Nagano'>Masahiro Nagano</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/kazeburo' target='_blank'>Rhebok, High Performance Rack Handler</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Yurie+Yamane'>Yurie Yamane</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/yurie' target='_blank'>making robot with mruby</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/LT+speakers+%28JA+-%3E+EN+interpreters+won%27t+be+available%29'>LT speakers (JA -> EN interpreters won't be available)</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/lt' target='_blank'>Lightning Talks</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/CRuby+Committers'>CRuby Committers</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/committers' target='_blank'>Ruby Committers vs the World</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Robert+Young'>Robert Young</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/youngrw_CraigLehmann' target='_blank'>It's dangerous to GC alone. Take this!</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Craig+Lehmann'>Craig Lehmann</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/youngrw_CraigLehmann' target='_blank'>It's dangerous to GC alone. Take this!</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Yoh+Osaki'>Yoh Osaki</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/youchan' target='_blank'>Writing web application in Ruby</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Sadayuki+Furuhashi'>Sadayuki Furuhashi</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/frsyuki' target='_blank'>Plugin-based software design with Ruby and RubyGems</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2015'>2015</a></td>
+              <td class="name"><a href='/speakers/Christophe+Philemotte'>Christophe Philemotte</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2015/presentations/toch' target='_blank'>Prepare yourself against Zombie epidemic</a></td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </figure>
+    </main>
+    <script>
+      const input = document.getElementById('search');
+      const count = document.getElementById('search-count');
+      const rows = document.querySelectorAll('figure tbody tr');
+      const total = rows.length;
+
+      function updateCount(visible) {
+        count.textContent = input.value ? visible + ' / ' + total + ' talks' : total + ' talks';
+      }
+
+      input.addEventListener('input', function () {
+        const terms = this.value.toLowerCase().split(/\s+/).filter(Boolean);
+        let visible = 0;
+        rows.forEach(function (row) {
+          const text = row.textContent.toLowerCase();
+          const match = terms.every(function (t) { return text.includes(t); });
+          row.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+        updateCount(visible);
+      });
+
+      updateCount(total);
+    </script>
   </body>
 </html>

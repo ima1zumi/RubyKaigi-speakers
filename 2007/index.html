@@ -1,193 +1,284 @@
-<html>
+<!DOCTYPE html>
+<html lang="ja">
   <head>
-  <title>RubyKaigi Speakers</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
-  </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RubyKaigi Speakers</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+      :root {
+        --pico-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
+      }
+      main.container { padding-block: 1.5rem; }
+      h1 { margin-bottom: 0.25rem; }
+      h1 a { color: inherit; text-decoration: none; }
+      .source-link { font-size: 0.9rem; margin-bottom: 1rem; }
+      a { text-decoration: none; }
+      a:hover { text-decoration: underline; }
 
+      #search {
+        padding: 0.4rem 0.6rem 0.4rem 2.5rem;
+        font-size: 0.9rem;
+        margin-bottom: 0;
+        height: auto;
+      }
+      .search-count {
+        color: var(--pico-muted-color);
+        font-size: 0.8rem;
+        display: block;
+        margin-top: 0.3rem;
+        margin-bottom: 0.75rem;
+      }
+
+      figure { overflow-x: auto; margin: 0; }
+      table { width: 100%; }
+      thead th {
+        position: sticky;
+        top: 0;
+        background: var(--pico-background-color);
+        z-index: 1;
+      }
+      .year-badge {
+        color: var(--pico-muted-color);
+        font-size: 0.85em;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .year-badge:hover { text-decoration: underline; }
+
+      /* スマホ: テーブルをカードレイアウトへ変換 */
+      @media (max-width: 640px) {
+        main.container { padding-inline: 1rem; }
+        figure thead { display: none; }
+        figure table,
+        figure tbody,
+        figure tr,
+        figure td {
+          display: block;
+          width: 100%;
+        }
+        figure tr {
+          padding: 0.85rem 0;
+          border-bottom: 1px solid var(--pico-muted-border-color);
+        }
+        figure tr:last-child { border-bottom: none; }
+        figure td {
+          padding: 0.15rem 0;
+          border: none;
+        }
+        figure td.year { margin-bottom: 0.4rem; }
+        figure td.name a { font-weight: 600; }
+      }
+    </style>
+  </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="column">
-          <h1><a href="../index.html">RubyKaigi Speakers</a></h1>
-          <a href="https://github.com/ima1zumi/RubyKaigi-speakers">Source</a>
-          <table class="pure-table pure-table-horizontal">
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>Name</th>
-                <th>Title</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Yukihiro+%22Matz%22+Matsumoto'>Yukihiro "Matz" Matsumoto</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>The Keynote for RubyKaigi 2007</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Akio+Tajima'>Akio Tajima</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>YAR(V)I: Yet Another Ruby(on VM) Implementations</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Kentaro+Goto+%2F+%E3%81%94%E3%81%A8%E3%81%91%E3%82%93'>Kentaro Goto / ごとけん</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Use Ruby More At Work</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Masatoshi+SEKI'>Masatoshi SEKI</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>Rinda: Answering the RubyConf, RubyKaigi</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Yuichi+Tateno'>Yuichi Tateno</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>"Moteru" Ruby! Using Ruby to Edit Graphics, This Way and That</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Fujimoto+Hisa'>Fujimoto Hisa</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>RubyCocoa - Mac OS X Software Development with Ruby</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Sutou+Kouhei'>Sutou Kouhei</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>rcairo</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Ippei+Obayashi'>Ippei Obayashi</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Ruby/SDL and related topics</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Kouichirou+ETO'>Kouichirou ETO</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>How I Made Media Artworks with Ruby, Without Losing a Single Yen</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Koichi+Sasada'>Koichi Sasada</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>A Report of Ruby 1.9 Implementation: Current Status and Future Goals</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Urabe%2C+Shyouhei'>Urabe, Shyouhei</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>Stable Ruby and its future</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Minero+AOKI'>Minero AOKI</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>The Ruby Reference Manual NG</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Charles+Nutter'>Charles Nutter</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>JRuby: Ruby for the Java Platform</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Thomas+E+Enebo'>Thomas E Enebo</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>JRuby: Ruby for the Java Platform</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Takaaki+TATEISHI'>Takaaki TATEISHI</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>Using Non-Ruby Libraries</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Makoto+Kuwata'>Makoto Kuwata</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>An example of a Ruby script that is faster than a C extension module.</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Park+Jiin'>Park Jiin</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>Web Scraping with Ruby - Hpricot and Mechanize and scRubyt</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Tim+Bray'>Tim Bray</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>The World In 30 Minutes</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Naoto+Takai'>Naoto Takai</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Enterprise Ruby with JRuby on Rails</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/John+Mettraux'>John Mettraux</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>OpenWFEru, a Ruby workflow engine</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Shun%27ichi+Shinohara'>Shun'ichi Shinohara</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>AP4R : Asynchronous Messaging Library for Ruby</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Kiwamu+Kato'>Kiwamu Kato</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>AP4R : Asynchronous Messaging Library for Ruby</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Hidetoshi+NAGAI'>Hidetoshi NAGAI</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Inside Ruby/Tk</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Masao+Mutoh'>Masao Mutoh</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Hello Ruby-GNOME2 World</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/nyasu+%28NISHIKAWA+Yasuhiro%29'>nyasu (NISHIKAWA Yasuhiro)</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Windows GUI Development with Project 'VisualuRuby'</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Yutaka+HARA'>Yutaka HARA</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Ruby/SDL and related topics</a></td>
-              </tr>
-              
-              <tr>
-                <td><a href='/2007'>2007</a></td>
-                <td><a href='/speakers/Dave+Thomas'>Dave Thomas</a></td>
-                <td><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Island Ruby, orHow To Survive Invasions, Immigrants, and Cultural Attacks</a></td>
-              </tr>
-              
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <main class="container">
+      <hgroup>
+        <h1><a href="/">RubyKaigi Speakers</a></h1>
+        <p class="source-link"><a href="https://github.com/ima1zumi/RubyKaigi-speakers">Source on GitHub</a></p>
+      </hgroup>
+      <input type="search" id="search" placeholder="Search by name, year, or title...">
+      <small class="search-count" id="search-count"></small>
+      <figure>
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Name</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Yukihiro+%22Matz%22+Matsumoto'>Yukihiro "Matz" Matsumoto</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>The Keynote for RubyKaigi 2007</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Akio+Tajima'>Akio Tajima</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>YAR(V)I: Yet Another Ruby(on VM) Implementations</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Kentaro+Goto+%2F+%E3%81%94%E3%81%A8%E3%81%91%E3%82%93'>Kentaro Goto / ごとけん</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Use Ruby More At Work</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Masatoshi+SEKI'>Masatoshi SEKI</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>Rinda: Answering the RubyConf, RubyKaigi</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Yuichi+Tateno'>Yuichi Tateno</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>"Moteru" Ruby! Using Ruby to Edit Graphics, This Way and That</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Fujimoto+Hisa'>Fujimoto Hisa</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>RubyCocoa - Mac OS X Software Development with Ruby</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Sutou+Kouhei'>Sutou Kouhei</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>rcairo</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Ippei+Obayashi'>Ippei Obayashi</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Ruby/SDL and related topics</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Kouichirou+ETO'>Kouichirou ETO</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>How I Made Media Artworks with Ruby, Without Losing a Single Yen</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Koichi+Sasada'>Koichi Sasada</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>A Report of Ruby 1.9 Implementation: Current Status and Future Goals</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Urabe%2C+Shyouhei'>Urabe, Shyouhei</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>Stable Ruby and its future</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Minero+AOKI'>Minero AOKI</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>The Ruby Reference Manual NG</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Charles+Nutter'>Charles Nutter</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>JRuby: Ruby for the Java Platform</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Thomas+E+Enebo'>Thomas E Enebo</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>JRuby: Ruby for the Java Platform</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Takaaki+TATEISHI'>Takaaki TATEISHI</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>Using Non-Ruby Libraries</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Makoto+Kuwata'>Makoto Kuwata</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>An example of a Ruby script that is faster than a C extension module.</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Park+Jiin'>Park Jiin</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>Web Scraping with Ruby - Hpricot and Mechanize and scRubyt</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Tim+Bray'>Tim Bray</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0609.html' target='_blank'>The World In 30 Minutes</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Naoto+Takai'>Naoto Takai</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Enterprise Ruby with JRuby on Rails</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/John+Mettraux'>John Mettraux</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>OpenWFEru, a Ruby workflow engine</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Shun%27ichi+Shinohara'>Shun'ichi Shinohara</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>AP4R : Asynchronous Messaging Library for Ruby</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Kiwamu+Kato'>Kiwamu Kato</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>AP4R : Asynchronous Messaging Library for Ruby</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Hidetoshi+NAGAI'>Hidetoshi NAGAI</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Inside Ruby/Tk</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Masao+Mutoh'>Masao Mutoh</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Hello Ruby-GNOME2 World</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/nyasu+%28NISHIKAWA+Yasuhiro%29'>nyasu (NISHIKAWA Yasuhiro)</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Windows GUI Development with Project 'VisualuRuby'</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Yutaka+HARA'>Yutaka HARA</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Ruby/SDL and related topics</a></td>
+            </tr>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2007'>2007</a></td>
+              <td class="name"><a href='/speakers/Dave+Thomas'>Dave Thomas</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2007/Program-EN0610.html' target='_blank'>Island Ruby, orHow To Survive Invasions, Immigrants, and Cultural Attacks</a></td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </figure>
+    </main>
+    <script>
+      const input = document.getElementById('search');
+      const count = document.getElementById('search-count');
+      const rows = document.querySelectorAll('figure tbody tr');
+      const total = rows.length;
+
+      function updateCount(visible) {
+        count.textContent = input.value ? visible + ' / ' + total + ' talks' : total + ' talks';
+      }
+
+      input.addEventListener('input', function () {
+        const terms = this.value.toLowerCase().split(/\s+/).filter(Boolean);
+        let visible = 0;
+        rows.forEach(function (row) {
+          const text = row.textContent.toLowerCase();
+          const match = terms.every(function (t) { return text.includes(t); });
+          row.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+        updateCount(visible);
+      });
+
+      updateCount(total);
+    </script>
   </body>
 </html>

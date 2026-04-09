@@ -1,37 +1,128 @@
-<html>
+<!DOCTYPE html>
+<html lang="ja">
   <head>
-  <title>RubyKaigi Speakers</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
-  </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RubyKaigi Speakers</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+      :root {
+        --pico-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
+      }
+      main.container { padding-block: 1.5rem; }
+      h1 { margin-bottom: 0.25rem; }
+      h1 a { color: inherit; text-decoration: none; }
+      .source-link { font-size: 0.9rem; margin-bottom: 1rem; }
+      a { text-decoration: none; }
+      a:hover { text-decoration: underline; }
 
+      #search {
+        padding: 0.4rem 0.6rem 0.4rem 2.5rem;
+        font-size: 0.9rem;
+        margin-bottom: 0;
+        height: auto;
+      }
+      .search-count {
+        color: var(--pico-muted-color);
+        font-size: 0.8rem;
+        display: block;
+        margin-top: 0.3rem;
+        margin-bottom: 0.75rem;
+      }
+
+      figure { overflow-x: auto; margin: 0; }
+      table { width: 100%; }
+      thead th {
+        position: sticky;
+        top: 0;
+        background: var(--pico-background-color);
+        z-index: 1;
+      }
+      .year-badge {
+        color: var(--pico-muted-color);
+        font-size: 0.85em;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .year-badge:hover { text-decoration: underline; }
+
+      /* スマホ: テーブルをカードレイアウトへ変換 */
+      @media (max-width: 640px) {
+        main.container { padding-inline: 1rem; }
+        figure thead { display: none; }
+        figure table,
+        figure tbody,
+        figure tr,
+        figure td {
+          display: block;
+          width: 100%;
+        }
+        figure tr {
+          padding: 0.85rem 0;
+          border-bottom: 1px solid var(--pico-muted-border-color);
+        }
+        figure tr:last-child { border-bottom: none; }
+        figure td {
+          padding: 0.15rem 0;
+          border: none;
+        }
+        figure td.year { margin-bottom: 0.4rem; }
+        figure td.name a { font-weight: 600; }
+      }
+    </style>
+  </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="column">
-          <h1><a href="../index.html">RubyKaigi Speakers</a></h1>
-          <a href="https://github.com/ima1zumi/RubyKaigi-speakers">Source</a>
-          <table class="pure-table pure-table-horizontal">
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>Name</th>
-                <th>Title</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-              <tr>
-                <td><a href='/2009'>2009</a></td>
-                <td><a href='/speakers/Ilya+Grigorik'>Ilya Grigorik</a></td>
-                <td><a href='https://rubykaigi.org/2009/en/talks/18M04' target='_blank'>Ruby C10K challenge: High Performance Networking</a></td>
-              </tr>
-              
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <main class="container">
+      <hgroup>
+        <h1><a href="/">RubyKaigi Speakers</a></h1>
+        <p class="source-link"><a href="https://github.com/ima1zumi/RubyKaigi-speakers">Source on GitHub</a></p>
+      </hgroup>
+      <input type="search" id="search" placeholder="Search by name, year, or title...">
+      <small class="search-count" id="search-count"></small>
+      <figure>
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Name</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td class="year"><a class="year-badge" href='/2009'>2009</a></td>
+              <td class="name"><a href='/speakers/Ilya+Grigorik'>Ilya Grigorik</a></td>
+              <td class="title"><a href='https://rubykaigi.org/2009/en/talks/18M04' target='_blank'>Ruby C10K challenge: High Performance Networking</a></td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </figure>
+    </main>
+    <script>
+      const input = document.getElementById('search');
+      const count = document.getElementById('search-count');
+      const rows = document.querySelectorAll('figure tbody tr');
+      const total = rows.length;
+
+      function updateCount(visible) {
+        count.textContent = input.value ? visible + ' / ' + total + ' talks' : total + ' talks';
+      }
+
+      input.addEventListener('input', function () {
+        const terms = this.value.toLowerCase().split(/\s+/).filter(Boolean);
+        let visible = 0;
+        rows.forEach(function (row) {
+          const text = row.textContent.toLowerCase();
+          const match = terms.every(function (t) { return text.includes(t); });
+          row.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+        updateCount(visible);
+      });
+
+      updateCount(total);
+    </script>
   </body>
 </html>

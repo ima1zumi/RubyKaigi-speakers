@@ -21,14 +21,16 @@ class HtmlGenerator
   end
 
   def create_html(speakers, path = '')
-    talks = speakers.map do |name, talks|
-      talks.map do |year, talks|
-        talks.map do |talk|
+    talks = @years.flat_map do |year|
+      speakers.flat_map do |name, speaker_talks|
+        next [] unless speaker_talks[year]
+
+        speaker_talks[year].map do |talk|
           url = "<a href='https://rubykaigi.org#{talk[:url]}' target='_blank'>#{talk[:title]}</a>"
           [year, name, url]
         end
       end
-    end.flatten(2)
+    end
 
     generate(talks, path)
   end

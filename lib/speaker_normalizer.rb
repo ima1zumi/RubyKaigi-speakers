@@ -84,8 +84,8 @@ class SpeakerNormalizer
       "Kentaro Goto / ごとけん"
     when "前田修吾", "Shugo MAEDA"
       "Shugo Maeda"
-    when "Daisuke Aritomo"
-      "Daisuke Aritomo (osyoyu)"
+    when "Daisuke Aritomo (osyoyu)"
+      "Daisuke Aritomo"
     when "Minero Aoki"
       "Minero AOKI"
     when "Koichiro OHBA"
@@ -102,6 +102,8 @@ class SpeakerNormalizer
       "CRuby Committers"
     when "Hiroya FUJINAMI"
       "Hiroya Fujinami"
+    when "monochrome"
+      "monochrome (Soichiro Isshiki)"
     else
       name
     end
